@@ -1,4 +1,23 @@
 (() => {
+  const caseUpdates = [
+    {
+      title: 'Jane Los Angeles Doe',
+      status: 'ID Unit response · clarification pending',
+      focus: 'Los Angeles County Medical Examiner’s Identification Unit says older unidentified cases are routinely reviewed for new law-enforcement leads, technological advances, and public information. The office also confirmed that purchasing the archived Medical Examiner report would not include copies of the decedent’s fingerprints, DNA reports, dental X-rays, or names of excluded individuals. Open Case Ledger has asked a follow-up to confirm whether case 89-05285 remains unidentified and active, whether fingerprints, dental records, a DNA profile, and retained biological samples exist, and whether forensic genetic genealogy has been reviewed.'
+    }
+  ];
+
+  caseUpdates.forEach((update) => {
+    const cards = Array.from(document.querySelectorAll('.case-card'));
+    const card = cards.find((candidate) => candidate.querySelector('h3')?.textContent.trim() === update.title);
+    if (!card) return;
+
+    const status = card.querySelector('.status');
+    const focus = card.querySelector('.case-focus');
+    if (status) status.textContent = update.status;
+    if (focus) focus.textContent = update.focus;
+  });
+
   const paginatedContainers = document.querySelectorAll('[data-page-size]');
 
   paginatedContainers.forEach((container) => {
