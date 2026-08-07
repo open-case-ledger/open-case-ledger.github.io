@@ -18,6 +18,13 @@
     if (focus) focus.textContent = update.focus;
   });
 
+  document.querySelectorAll('a[href="documents/wanda-line-fcso-redacted-incident-report-2026-08-07.pdf"]').forEach((link) => {
+    link.href = 'documents/wanda-line-fcso-redacted-incident-report-2026-08-07.html';
+    if (link.textContent.includes('PDF')) {
+      link.textContent = link.textContent.replace('PDF', 'record');
+    }
+  });
+
   const paginatedContainers = document.querySelectorAll('[data-page-size]');
 
   paginatedContainers.forEach((container) => {
