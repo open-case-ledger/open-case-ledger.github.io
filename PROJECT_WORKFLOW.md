@@ -11,6 +11,16 @@ Before recommending, drafting, or sending any outreach email for a case:
 5. If an active request already exists with that agency, prefer rotating to a different agency/case unless the new request is time-sensitive, clearly unrelated, or specifically requested.
 6. Only after this preflight should a new outreach email be recommended or drafted.
 
+## Email drafting and signature
+
+When the next user task is to send an email and the connected Open Case Ledger Gmail account is available:
+
+1. Create the actual Gmail draft rather than only pasting email text into chat.
+2. Give the user the direct Gmail draft link so the message can be reviewed and sent with minimal clicks.
+3. Include the Open Case Ledger website link under the signature in routine project outreach: https://open-case-ledger.github.io/
+4. Do not send the message yourself unless the user explicitly asks you to send it.
+5. After the user says the message was sent, verify it in Sent when possible and update the master tracker.
+
 ## Task rotation
 
 Do not treat every next task as a new records request. Regularly rotate among:
