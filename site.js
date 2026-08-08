@@ -19,6 +19,12 @@
   });
 
   const ledgerGrid = document.querySelector('#ledger .case-grid');
+  if (ledgerGrid && !Array.from(ledgerGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Leah Roberts')) {
+    ledgerGrid.insertAdjacentHTML('afterbegin', `
+      <article class="case-card"><div class="case-topline"><span>15</span><span class="status waiting">Official timeline · active investigation</span></div><p class="case-place">Whatcom County, Washington · Missing 2000</p><h3>Leah Roberts</h3><p class="case-focus">Whatcom County Sheriff’s Office says Leah Roberts left North Carolina on March 9, 2000. A gas receipt places her in Brooks, Oregon, early March 13; she bought a 2:10 p.m. movie ticket at Bellis Fair Mall in Bellingham later that day; and her Jeep was found abandoned on a Whatcom County logging road on March 18. The original incident report remains withheld because the investigation is active, so current research is limited to public-source chronology, witnesses, locations, and evidence already officially described.</p><a href="https://www.whatcomcounty.us/292/Missing-Leah-Roberts" target="_blank" rel="noreferrer">Whatcom County Sheriff official case page ↗</a></article>
+    `);
+  }
+
   if (ledgerGrid && !Array.from(ledgerGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Dennis Swain Jr.')) {
     ledgerGrid.insertAdjacentHTML('afterbegin', `
       <article class="case-card"><div class="case-topline"><span>14</span><span class="status closed">RPD records request denied</span></div><p class="case-place">Riverside, California · 1994</p><h3>Dennis Swain Jr.</h3><p class="case-focus">Riverside Police Department denied Open Case Ledger request W022110-080726 for Police Report P394260179 on August 7, 2026. The department cites California Government Code § 7923.600(a), the investigatory-record exemption, and released no portion of the requested incident report. The records route is closed; research now returns to public sources unless circumstances change.</p><a href="documents/dennis-swain-riverside-police-denial-2026-08-07.html">Read the Riverside denial letter ↗</a></article>
@@ -29,6 +35,13 @@
   if (recordsGrid && !Array.from(recordsGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Dennis Swain Jr.')) {
     recordsGrid.insertAdjacentHTML('afterbegin', `
       <article><span>04</span><h3>Dennis Swain Jr.</h3><p>Riverside Police Department denial letter for request W022110-080726, seeking Police Report P394260179. Received August 7, 2026. The department withheld the requested report under California Government Code § 7923.600(a); no investigative records were released.</p><a href="documents/dennis-swain-riverside-police-denial-2026-08-07.html">Open denial letter ↗</a></article>
+    `);
+  }
+
+  const researchGrid = document.querySelector('#research-notes .principles');
+  if (researchGrid && !Array.from(researchGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Leah Roberts · official timeline')) {
+    researchGrid.insertAdjacentHTML('afterbegin', `
+      <article><span>04</span><h3>Leah Roberts · official timeline</h3><p>The Whatcom County Sheriff’s Office public case page provides the current official chronology for Leah’s March 2000 disappearance. Open Case Ledger is using that page as the primary-source baseline while the underlying incident report remains exempt as part of an active investigation.</p><a href="https://www.whatcomcounty.us/292/Missing-Leah-Roberts" target="_blank" rel="noreferrer">Official Whatcom County source ↗</a></article>
     `);
   }
 
