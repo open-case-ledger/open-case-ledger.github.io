@@ -1,4 +1,9 @@
 (() => {
+  const analyticsScript = document.createElement('script');
+  analyticsScript.async = true;
+  analyticsScript.src = 'https://scripts.simpleanalyticscdn.com/latest.js';
+  document.head.appendChild(analyticsScript);
+
   const caseUpdates = [
     {
       title: 'Jane Los Angeles Doe',
