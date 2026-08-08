@@ -7,8 +7,8 @@
     },
     {
       title: 'Bellport Jane Doe',
-      status: '2026 official composite released',
-      focus: 'Suffolk County District Attorney’s Cold Case Task Force lists this investigation as case 99-564229. The victim was living on Michigan Avenue in Bellport in 1983, was known to others as Marie or Maria, and rented a room from Arthur Kinlaw, who later admitted killing her during an argument over rent. She was described as approximately 300 pounds, possibly Black or Hispanic, used a walker after a shattered femur, and was recovered with a rosary and homemade blue jersey dress. In 2026 the Task Force released an updated composite sketch as part of a renewed effort to identify her.'
+      status: 'Historical-society inquiry sent',
+      focus: 'Suffolk County’s 2026 cold-case update identifies the case as 99-564229 and says the woman known as “Marie” or “Maria” lived on Michigan Avenue in Bellport and rented from Arthur Kinlaw. Open Case Ledger sent an August 7, 2026 inquiry to the Bellport-Brookhaven Historical Society seeking 1982–1984 directories, address files, tax maps, photographs, clipping files, and other local-history material that could identify the exact Kinlaw residence and occupants.'
     }
   ];
 
@@ -36,11 +36,6 @@
     `);
   }
 
-  const bellportCard = Array.from(document.querySelectorAll('#ledger .case-card')).find((candidate) => candidate.querySelector('h3')?.textContent.trim() === 'Bellport Jane Doe');
-  if (bellportCard && !Array.from(bellportCard.querySelectorAll('a')).some((link) => link.textContent.includes('2026 Suffolk County update'))) {
-    bellportCard.insertAdjacentHTML('beforeend', '<br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">2026 Suffolk County cold-case update ↗</a>');
-  }
-
   const recordsGrid = document.querySelector('#records .principles');
   if (recordsGrid && !Array.from(recordsGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Dennis Swain Jr.')) {
     recordsGrid.insertAdjacentHTML('afterbegin', `
@@ -54,10 +49,9 @@
       <article><span>04</span><h3>Leah Roberts · official timeline</h3><p>The Whatcom County Sheriff’s Office public case page provides the current official chronology for Leah’s March 2000 disappearance and links its printable flyer with a larger photograph. Open Case Ledger is using these official materials as the primary-source baseline while the underlying incident report remains exempt as part of an active investigation.</p><a href="https://www.whatcomcounty.us/292/Missing-Leah-Roberts" target="_blank" rel="noreferrer">Official case page and printable flyer ↗</a></article>
     `);
   }
-
-  if (researchGrid && !Array.from(researchGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Bellport Jane Doe · 2026 official update')) {
+  if (researchGrid && !Array.from(researchGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Bellport Jane Doe · Michigan Avenue')) {
     researchGrid.insertAdjacentHTML('afterbegin', `
-      <article><span>05</span><h3>Bellport Jane Doe · 2026 official update</h3><p>Suffolk County’s Cold Case Task Force has renewed the identification effort for case 99-564229 and released an updated composite sketch. The official case materials confirm the victim used the names Marie or Maria, lived on Michigan Avenue in Bellport, rented from Arthur Kinlaw, used a walker after a shattered femur, and was recovered with a rosary and homemade blue jersey dress. Archive research is now focused on identifying the exact residence and 1983 occupants or tenants.</p><a href="https://www.suffolkcountyda.org/cold_case/bellport-jane-doe/" target="_blank" rel="noreferrer">Official Suffolk County case page ↗</a><br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">2026 Cold Case Task Force update ↗</a></article>
+      <article><span>05</span><h3>Bellport Jane Doe · Michigan Avenue</h3><p>Suffolk County’s 2026 cold-case page confirms that the unidentified woman known as Marie or Maria lived on Michigan Avenue in Bellport and rented from Arthur Kinlaw. An inquiry was sent August 7, 2026 to the Bellport-Brookhaven Historical Society seeking period directories, tax maps, address files, photographs, and clipping files to identify the exact residence and occupants.</p><a href="https://www.suffolkcountyda.org/cold_case/bellport-jane-doe/" target="_blank" rel="noreferrer">Suffolk County official cold-case update ↗</a></article>
     `);
   }
 
