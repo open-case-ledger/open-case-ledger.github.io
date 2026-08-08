@@ -7,7 +7,10 @@
   const unpublishedUntilAcknowledged = new Set([
     'Rockledge Jane Doe',
     'Newark Jane Doe',
-    'North Port John Doe'
+    'North Port John Doe',
+    'Richmond John Doe',
+    'Sandra Burt Carrera',
+    'Dorchester Jane Doe'
   ]);
 
   const caseUpdates = [
@@ -43,6 +46,12 @@
     }
   ];
 
+  const appendLinkOnce = (card, marker, html) => {
+    if (!Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes(marker))) {
+      card.insertAdjacentHTML('beforeend', html);
+    }
+  };
+
   caseUpdates.forEach((update) => {
     const cards = Array.from(document.querySelectorAll('.case-card'));
     const card = cards.find((candidate) => candidate.querySelector('h3')?.textContent.trim() === update.title);
@@ -53,25 +62,21 @@
     if (status) status.textContent = update.status;
     if (focus) focus.textContent = update.focus;
 
-    if (update.title === 'Bellport Jane Doe' && !Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('2026 updated composite'))) {
-      card.insertAdjacentHTML('beforeend', '<br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">Suffolk DA 2026 updated composite + case details ↗</a>');
+    if (update.title === 'Bellport Jane Doe') {
+      appendLinkOnce(card, '2026 updated composite', '<br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">Suffolk DA 2026 updated composite + case details ↗</a>');
     }
 
-    if (update.title === 'Pamela Leigh Walton' && !Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('NPS historic'))) {
-      card.insertAdjacentHTML('beforeend', '<br><a href="https://npgallery.nps.gov/GetAsset/e70fafe5-8a52-4040-bf8d-9385db8bf692/" target="_blank" rel="noreferrer">NPS historic inventory for 319 Walnut ↗</a><br><a href="https://nicholascounty.ky.gov/elected/PVA/Pages/default.aspx" target="_blank" rel="noreferrer">Nicholas County PVA property-record source ↗</a>');
+    if (update.title === 'Pamela Leigh Walton') {
+      appendLinkOnce(card, 'NPS historic', '<br><a href="https://npgallery.nps.gov/GetAsset/e70fafe5-8a52-4040-bf8d-9385db8bf692/" target="_blank" rel="noreferrer">NPS historic inventory for 319 Walnut ↗</a><br><a href="https://nicholascounty.ky.gov/elected/PVA/Pages/default.aspx" target="_blank" rel="noreferrer">Nicholas County PVA property-record source ↗</a>');
     }
 
     if (update.title === 'Medford Jane Doe') {
-      if (!Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('2026 National Missing Persons Day'))) {
-        card.insertAdjacentHTML('beforeend', '<br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">Suffolk DA 2026 National Missing Persons Day update ↗</a>');
-      }
-      if (!Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('FBI ViCAP flyer'))) {
-        card.insertAdjacentHTML('beforeend', '<br><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/jane-doe---medford-new-york/medford-ny.pdf" target="_blank" rel="noreferrer">FBI ViCAP flyer with reconstructions + tattoo ↗</a>');
-      }
+      appendLinkOnce(card, '2026 National Missing Persons Day', '<br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">Suffolk DA 2026 National Missing Persons Day update ↗</a>');
+      appendLinkOnce(card, 'FBI ViCAP flyer', '<br><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/jane-doe---medford-new-york/medford-ny.pdf" target="_blank" rel="noreferrer">FBI ViCAP flyer with reconstructions + tattoo ↗</a>');
     }
 
-    if (update.title === 'Theresa Corley' && !Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('February 2026 Bellingham response'))) {
-      card.insertAdjacentHTML('beforeend', '<br><a href="https://www.muckrock.com/foi/bellingham-463/ronald-a-moore-report-200921/" target="_blank" rel="noreferrer">February 2026 Bellingham response ↗</a><br><a href="https://www.bellinghamma.org/374/Daily-Press-Quarterly-Arrest-Logs" target="_blank" rel="noreferrer">Bellingham Police records page ↗</a>');
+    if (update.title === 'Theresa Corley') {
+      appendLinkOnce(card, 'February 2026 Bellingham response', '<br><a href="https://www.muckrock.com/foi/bellingham-463/ronald-a-moore-report-200921/" target="_blank" rel="noreferrer">February 2026 Bellingham response ↗</a><br><a href="https://www.bellinghamma.org/374/Daily-Press-Quarterly-Arrest-Logs" target="_blank" rel="noreferrer">Bellingham Police records page ↗</a>');
     }
 
     if (update.title === 'Leah Roberts') {
@@ -106,20 +111,14 @@
 
   const recordsGrid = document.querySelector('#records .principles');
   if (recordsGrid && !Array.from(recordsGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Dennis Swain Jr.')) {
-    recordsGrid.insertAdjacentHTML('afterbegin', `
-      <article><span>04</span><h3>Dennis Swain Jr.</h3><p>Riverside Police Department denial letter for request W022110-080726, seeking Police Report P394260179. Received August 7, 2026. The department withheld the requested report under California Government Code § 7923.600(a); no investigative records were released.</p><a href="documents/dennis-swain-riverside-police-denial-2026-08-07.html">Open denial letter ↗</a></article>
-    `);
+    recordsGrid.insertAdjacentHTML('afterbegin', '<article><span>04</span><h3>Dennis Swain Jr.</h3><p>Riverside Police Department denial letter for request W022110-080726, seeking Police Report P394260179. Received August 7, 2026. The department withheld the requested report under California Government Code § 7923.600(a); no investigative records were released.</p><a href="documents/dennis-swain-riverside-police-denial-2026-08-07.html">Open denial letter ↗</a></article>');
   }
 
   const researchGrid = document.querySelector('#research-notes .principles');
   if (researchGrid) {
     Array.from(researchGrid.querySelectorAll('article')).forEach((article) => {
       const heading = article.querySelector('h3')?.textContent.trim() || '';
-      if (
-        heading.startsWith('Rockledge Jane Doe') ||
-        heading.startsWith('Newark Jane Doe') ||
-        heading.startsWith('North Port John Doe')
-      ) article.remove();
+      if (heading.startsWith('Rockledge Jane Doe') || heading.startsWith('Newark Jane Doe') || heading.startsWith('North Port John Doe')) article.remove();
     });
   }
 
@@ -129,25 +128,27 @@
     }
   };
 
-  addResearchNote('Theresa Corley · 2026 active investigation', `
-    <article><span>09</span><h3>Theresa Corley · 2026 active investigation</h3><p>In a February 9, 2026 public-records response, Bellingham Police said Theresa Corley’s homicide remains active and ongoing. The department described substantive investigative work since 2023, including collection of DNA from persons of interest or people potentially connected to them, follow-up on telephone and in-person tips, preparation of investigative summaries, and interviews of potential witnesses. That recent activity strengthens the current active-investigation baseline. Open Case Ledger is therefore waiting on Massachusetts State Police request P008678-080726 rather than duplicating a Bellingham request for the same 1978 offense report.</p><a href="https://www.muckrock.com/foi/bellingham-463/ronald-a-moore-report-200921/" target="_blank" rel="noreferrer">Publicly posted Bellingham Police correspondence ↗</a><br><a href="https://www.bellinghamma.org/374/Daily-Press-Quarterly-Arrest-Logs" target="_blank" rel="noreferrer">Bellingham Police records page ↗</a></article>
-  `);
+  addResearchNote('Theresa Corley · 2026 active investigation', '<article><span>09</span><h3>Theresa Corley · 2026 active investigation</h3><p>In a February 9, 2026 public-records response, Bellingham Police said Theresa Corley’s homicide remains active and ongoing. The department described substantive investigative work since 2023, including collection of DNA from persons of interest or people potentially connected to them, follow-up on telephone and in-person tips, preparation of investigative summaries, and interviews of potential witnesses. That recent activity strengthens the current active-investigation baseline. Open Case Ledger is therefore waiting on Massachusetts State Police request P008678-080726 rather than duplicating a Bellingham request for the same 1978 offense report.</p><a href="https://www.muckrock.com/foi/bellingham-463/ronald-a-moore-report-200921/" target="_blank" rel="noreferrer">Publicly posted Bellingham Police correspondence ↗</a><br><a href="https://www.bellinghamma.org/374/Daily-Press-Quarterly-Arrest-Logs" target="_blank" rel="noreferrer">Bellingham Police records page ↗</a></article>');
+  addResearchNote('Medford Jane Doe · 2026 genetic genealogy update', '<article><span>08</span><h3>Medford Jane Doe · 2026 genetic genealogy update</h3><p>Suffolk County’s February 3, 2026 National Missing Persons Day update says recent genetic-genealogy work indicates Medford Jane Doe was Caucasian with Western European ancestry, at least 75% attributable to England, Scotland, and Wales. The Cold Case Task Force released a clay reconstruction, an updated facial composite, and an updated depiction of the ADRIAN heart tattoo. An FBI ViCAP alert released April 23, 2026 adds a scar in the center of the right calf, a black J.J. Cochran-label halter top, a Hilton Hotel bathmat, and confirms dental records are available. The FBI flyer collects the reconstructions and tattoo image in one official downloadable source. The case remains open. A pre-existing Suffolk County Clerk inquiry is separately seeking public portions of the Robert Yale Shulman court file for possible victim-identification leads, so no duplicate court outreach is being sent.</p><a href="https://www.suffolkcountyda.org/cold_case/medford-jane-doe/" target="_blank" rel="noreferrer">Suffolk DA Medford Jane Doe case page ↗</a><br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">February 3, 2026 official update ↗</a><br><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/jane-doe---medford-new-york/medford-ny.pdf" target="_blank" rel="noreferrer">April 23, 2026 FBI ViCAP flyer with reconstructions + tattoo ↗</a></article>');
+  addResearchNote('Pamela Walton · 319 Walnut official sources', '<article><span>06</span><h3>Pamela Walton · 319 Walnut official sources</h3><p>The June 1988 court listing gives Pamela’s address as 319 Walnut in Carlisle. The National Park Service’s Carlisle Historic District inventory separately identifies 319 Walnut as a circa-1900 residential house. Nicholas County PVA is already researching the historical ownership through handwritten 1988 property cards following an August 6 legacy-email exchange with Jackie M. Earlywine, who promised to send what she can find after returning August 10.</p><a href="https://npgallery.nps.gov/GetAsset/e70fafe5-8a52-4040-bf8d-9385db8bf692/" target="_blank" rel="noreferrer">NPS Carlisle Historic District inventory ↗</a><br><a href="https://nicholascounty.ky.gov/elected/PVA/Pages/default.aspx" target="_blank" rel="noreferrer">Nicholas County PVA ↗</a></article>');
+  addResearchNote('Bellport Jane Doe · Michigan Avenue', '<article><span>05</span><h3>Bellport Jane Doe · Michigan Avenue</h3><p>Suffolk County’s current cold-case page says the woman known as Marie or Maria rented a room from Arthur Kinlaw at a Michigan Avenue residence in Bellport and was murdered around 1983. Her remains were recovered in November 1999 from beneath a concrete patio at the residence after information supplied by Kinlaw’s wife. Suffolk describes her as a heavyset Black or Hispanic woman, approximately 300 pounds, who used a walker and had previously shattered her femur. A rosary and homemade blue jersey dress were recovered with her remains, and investigators believe she may have been a sex worker from New York City. Suffolk County released an updated composite sketch in February 2026. A separate August 7 historical-society inquiry is seeking period directories, tax maps, address files, photographs, and clipping files to identify the exact Michigan Avenue residence and occupants.</p><a href="https://www.suffolkcountyda.org/cold_case/bellport-jane-doe/" target="_blank" rel="noreferrer">Suffolk County Bellport Jane Doe case page ↗</a><br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">February 3, 2026 updated composite + official release ↗</a></article>');
+  addResearchNote('Leah Roberts · official timeline', '<article><span>04</span><h3>Leah Roberts · official timeline</h3><p>The Whatcom County Sheriff’s Office public case page provides the current official chronology for Leah’s March 2000 disappearance and links its printable flyer with a larger photograph. Open Case Ledger is using these official materials as the primary-source baseline while the underlying incident report remains exempt as part of an active investigation.</p><a href="https://www.whatcomcounty.us/292/Missing-Leah-Roberts" target="_blank" rel="noreferrer">Official case page with flyer/photo access ↗</a></article>');
 
-  addResearchNote('Medford Jane Doe · 2026 genetic genealogy update', `
-    <article><span>08</span><h3>Medford Jane Doe · 2026 genetic genealogy update</h3><p>Suffolk County’s February 3, 2026 National Missing Persons Day update says recent genetic-genealogy work indicates Medford Jane Doe was Caucasian with Western European ancestry, at least 75% attributable to England, Scotland, and Wales. The Cold Case Task Force released a clay reconstruction, an updated facial composite, and an updated depiction of the ADRIAN heart tattoo. An FBI ViCAP alert released April 23, 2026 adds a scar in the center of the right calf, a black J.J. Cochran-label halter top, a Hilton Hotel bathmat, and confirms dental records are available. The FBI flyer collects the reconstructions and tattoo image in one official downloadable source. The case remains open. A pre-existing Suffolk County Clerk inquiry is separately seeking public portions of the Robert Yale Shulman court file for possible victim-identification leads, so no duplicate court outreach is being sent.</p><a href="https://www.suffolkcountyda.org/cold_case/medford-jane-doe/" target="_blank" rel="noreferrer">Suffolk DA Medford Jane Doe case page ↗</a><br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">February 3, 2026 official update ↗</a><br><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/jane-doe---medford-new-york/medford-ny.pdf" target="_blank" rel="noreferrer">April 23, 2026 FBI ViCAP flyer with reconstructions + tattoo ↗</a></article>
-  `);
+  const sortNumberedArticlesDescending = (container) => {
+    if (!container) return;
+    const articles = Array.from(container.children).filter((child) => child.matches('article'));
+    articles.sort((a, b) => {
+      const aNumber = Number.parseInt(a.querySelector('span')?.textContent.trim(), 10);
+      const bNumber = Number.parseInt(b.querySelector('span')?.textContent.trim(), 10);
+      const safeA = Number.isFinite(aNumber) ? aNumber : -1;
+      const safeB = Number.isFinite(bNumber) ? bNumber : -1;
+      return safeB - safeA;
+    });
+    articles.forEach((article) => container.appendChild(article));
+  };
 
-  addResearchNote('Pamela Walton · 319 Walnut official sources', `
-    <article><span>06</span><h3>Pamela Walton · 319 Walnut official sources</h3><p>The June 1988 court listing gives Pamela’s address as 319 Walnut in Carlisle. The National Park Service’s Carlisle Historic District inventory separately identifies 319 Walnut as a circa-1900 residential house. Nicholas County PVA is already researching the historical ownership through handwritten 1988 property cards following an August 6 legacy-email exchange with Jackie M. Earlywine, who promised to send what she can find after returning August 10.</p><a href="https://npgallery.nps.gov/GetAsset/e70fafe5-8a52-4040-bf8d-9385db8bf692/" target="_blank" rel="noreferrer">NPS Carlisle Historic District inventory ↗</a><br><a href="https://nicholascounty.ky.gov/elected/PVA/Pages/default.aspx" target="_blank" rel="noreferrer">Nicholas County PVA ↗</a></article>
-  `);
-
-  addResearchNote('Bellport Jane Doe · Michigan Avenue', `
-    <article><span>05</span><h3>Bellport Jane Doe · Michigan Avenue</h3><p>Suffolk County’s current cold-case page says the woman known as Marie or Maria rented a room from Arthur Kinlaw at a Michigan Avenue residence in Bellport and was murdered around 1983. Her remains were recovered in November 1999 from beneath a concrete patio at the residence after information supplied by Kinlaw’s wife. Suffolk describes her as a heavyset Black or Hispanic woman, approximately 300 pounds, who used a walker and had previously shattered her femur. A rosary and homemade blue jersey dress were recovered with her remains, and investigators believe she may have been a sex worker from New York City. Suffolk County released an updated composite sketch in February 2026. A separate August 7 historical-society inquiry is seeking period directories, tax maps, address files, photographs, and clipping files to identify the exact Michigan Avenue residence and occupants.</p><a href="https://www.suffolkcountyda.org/cold_case/bellport-jane-doe/" target="_blank" rel="noreferrer">Suffolk County Bellport Jane Doe case page ↗</a><br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">February 3, 2026 updated composite + official release ↗</a></article>
-  `);
-
-  addResearchNote('Leah Roberts · official timeline', `
-    <article><span>04</span><h3>Leah Roberts · official timeline</h3><p>The Whatcom County Sheriff’s Office public case page provides the current official chronology for Leah’s March 2000 disappearance and links its printable flyer with a larger photograph. Open Case Ledger is using these official materials as the primary-source baseline while the underlying incident report remains exempt as part of an active investigation.</p><a href="https://www.whatcomcounty.us/292/Missing-Leah-Roberts" target="_blank" rel="noreferrer">Official case page with flyer/photo access ↗</a></article>
-  `);
+  sortNumberedArticlesDescending(recordsGrid);
+  sortNumberedArticlesDescending(researchGrid);
 
   document.querySelectorAll('a[href="documents/wanda-line-fcso-redacted-incident-report-2026-08-07.pdf"]').forEach((link) => {
     link.href = 'documents/wanda-line-fcso-redacted-incident-report-2026-08-07.html';
