@@ -68,8 +68,9 @@
   };
 
   caseUpdates.forEach((update) => {
-    const cards = Array.from(document.querySelectorAll('.case-card'));
-    const card = cards.find((candidate) => candidate.querySelector('h3')?.textContent.trim() === update.title);
+    const card = Array.from(document.querySelectorAll('.case-card')).find(
+      (candidate) => candidate.querySelector('h3')?.textContent.trim() === update.title
+    );
     if (!card) return;
 
     const status = card.querySelector('.status');
@@ -104,8 +105,9 @@
 
     if (update.title === 'Wanda Line') {
       if (!card.querySelector('.dispatch-article-note')) {
-        card.insertAdjacentHTML('beforeend', '<p class="case-note dispatch-article-note">Contemporaneous source: “Officers say victim was dancer,” <em>Columbus Dispatch</em>, January 5, 1984, p. 12. Copy supplied by Columbus Metropolitan Library on August 8, 2026. The copyrighted clipping is summarized here rather than republished.</p>');
+        card.insertAdjacentHTML('beforeend', '<p class="case-note dispatch-article-note">Contemporaneous source: “Officers say victim was dancer,” <em>Columbus Dispatch</em>, January 5, 1984, p. 12. Copy supplied by Columbus Metropolitan Library on August 8, 2026.</p>');
       }
+      appendLinkOnce(card, 'Columbus Metropolitan Library newspaper index', '<br><a href="https://digital-collections.columbuslibrary.org/digital/collection/p16802coll35/id/398718/" target="_blank" rel="noreferrer">Columbus Metropolitan Library newspaper index ↗</a>');
     }
 
     if (update.title === 'Rosebud John Doe') {
@@ -149,18 +151,35 @@
       if (title && unpublishedUntilAcknowledged.has(title)) card.remove();
     });
 
-    const numberedCards = Array.from(ledgerGrid.querySelectorAll('.case-card'));
-    numberedCards.sort((a, b) => {
+    const cards = Array.from(ledgerGrid.querySelectorAll('.case-card'));
+    cards.sort((a, b) => {
+      const aTitle = a.querySelector('h3')?.textContent.trim();
+      const bTitle = b.querySelector('h3')?.textContent.trim();
+      if (aTitle === 'Wanda Line') return -1;
+      if (bTitle === 'Wanda Line') return 1;
       const aNumber = Number.parseInt(a.querySelector('.case-topline span')?.textContent.trim(), 10) || 0;
       const bNumber = Number.parseInt(b.querySelector('.case-topline span')?.textContent.trim(), 10) || 0;
       return bNumber - aNumber;
     });
-    numberedCards.forEach((card) => ledgerGrid.appendChild(card));
+
+    cards.forEach((card, index) => {
+      const number = card.querySelector('.case-topline span');
+      if (number) number.textContent = String(cards.length - index).padStart(2, '0');
+      ledgerGrid.appendChild(card);
+    });
   }
 
   const recordsGrid = document.querySelector('#records .principles');
   if (recordsGrid && !Array.from(recordsGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Dennis Swain Jr.')) {
     recordsGrid.insertAdjacentHTML('afterbegin', '<article><span>04</span><h3>Dennis Swain Jr.</h3><p>Riverside Police Department denial letter for request W022110-080726, seeking Police Report P394260179. Received August 7, 2026. The department withheld the requested report under California Government Code § 7923.600(a); no investigative records were released.</p><a href="documents/dennis-swain-riverside-police-denial-2026-08-07.html">Open denial letter ↗</a></article>');
+  }
+
+  if (recordsGrid) {
+    const wandaRecord = Array.from(recordsGrid.querySelectorAll('article')).find((article) => article.querySelector('h3')?.textContent.trim() === 'Wanda Line');
+    if (wandaRecord) {
+      const number = wandaRecord.querySelector('span');
+      if (number) number.textContent = '02';
+    }
   }
 
   const researchGrid = document.querySelector('#research-notes .principles');
@@ -177,7 +196,7 @@
     }
   };
 
-  addResearchNote('Wanda Line · January 1984 contemporaneous report', '<article><span>13</span><h3>Wanda Line · January 1984 contemporaneous report</h3><p>A full January 5, 1984 <em>Columbus Dispatch</em> clipping supplied by Columbus Metropolitan Library materially narrows the injury discrepancy in Wanda Line’s homicide. Detectives told the newspaper that Wanda had suffered a severe skull fracture that could have been caused by a blunt instrument such as a hammer. That account, published two days after she was found, is consistent with the Ohio Attorney General’s later description that she was beaten to death and indicates that the Franklin County Sheriff’s scene notation of apparent gunshot wounds was preliminary. The article also says detectives believed Wanda used the alias “Brandy” and worked as a dancer at Looking Kool, 5960 W. Broad St.; the club manager denied that employment claim. Deputies discovered Wanda at 100 Darien Ave., Apt. A after a loud-music complaint. The apartment was locked and chained, her boyfriend Thomas Wessels was reported to be in Florida, detectives said they had identified no motive, and Coroner William Adrion estimated she had been dead about 24 hours. The coroner/autopsy record remains the strongest missing source for definitive medical wording.</p><p class="case-note">Source: “Officers say victim was dancer,” <em>Columbus Dispatch</em>, January 5, 1984, p. 12; copy supplied by Columbus Metropolitan Library, August 8, 2026.</p><a href="https://www.ohioattorneygeneral.gov/Files/Law-Enforcement/Investigator/Cold-Case/Homicides/Line" target="_blank" rel="noreferrer">Ohio Attorney General cold-case page ↗</a><br><a href="documents/wanda-line-fcso-redacted-incident-report-2026-08-07.html" target="_blank" rel="noreferrer">FCSO redacted incident record ↗</a></article>');
+  addResearchNote('Wanda Line · January 1984 contemporaneous report', '<article><span>13</span><h3>Wanda Line · January 1984 contemporaneous report</h3><p>A full January 5, 1984 <em>Columbus Dispatch</em> clipping supplied by Columbus Metropolitan Library materially narrows the injury discrepancy in Wanda Line’s homicide. Detectives told the newspaper that Wanda had suffered a severe skull fracture that could have been caused by a blunt instrument such as a hammer. That account, published two days after she was found, is consistent with the Ohio Attorney General’s later description that she was beaten to death and indicates that the Franklin County Sheriff’s scene notation of apparent gunshot wounds was preliminary. The article also says detectives believed Wanda used the alias “Brandy” and worked as a dancer at Looking Kool, 5960 W. Broad St.; the club manager denied that employment claim. Deputies discovered Wanda at 100 Darien Ave., Apt. A after a loud-music complaint. The apartment was locked and chained, her boyfriend Thomas Wessels was reported to be in Florida, detectives said they had identified no motive, and Coroner William Adrion estimated she had been dead about 24 hours. The coroner/autopsy record remains the strongest missing source for definitive medical wording.</p><p class="case-note">Source: “Officers say victim was dancer,” <em>Columbus Dispatch</em>, January 5, 1984, p. 12; copy supplied by Columbus Metropolitan Library, August 8, 2026.</p><a href="https://digital-collections.columbuslibrary.org/digital/collection/p16802coll35/id/398718/" target="_blank" rel="noreferrer">Columbus Metropolitan Library newspaper index ↗</a><br><a href="https://www.ohioattorneygeneral.gov/Files/Law-Enforcement/Investigator/Cold-Case/Homicides/Line" target="_blank" rel="noreferrer">Ohio Attorney General cold-case page ↗</a><br><a href="documents/wanda-line-fcso-redacted-incident-report-2026-08-07.html" target="_blank" rel="noreferrer">FCSO redacted incident record ↗</a></article>');
   addResearchNote('Desert Center Jane Doe · 2026 FGG and facial rendition', '<article><span>12</span><h3>Desert Center Jane Doe · 2026 FGG and facial rendition</h3><p>Riverside County’s May 26, 2026 official cold-case release changes the evidentiary picture substantially. The Regional Cold Case Homicide Team re-examined the case in 2023 using forensic investigative genetic genealogy. Bone samples collected by the Riverside County Coroner were sent to Othram, which developed a DNA profile that was uploaded to a direct-to-consumer ancestry database; a genealogist assigned to the team is actively working to identify her. In 2024 Parabon Nanolabs created a photo rendition and ancestry snapshot indicating Southeast Asian ancestry, brown eyes, black hair, and light brown complexion. Riverside released the facial rendition publicly in 2026. The current FBI ViCAP page reflects the Southeast Asian profile and continues to feature the ship’s-wheel-and-anchor medallion and acrylic partial denture. Riverside’s 2026 public release now controls Open Case Ledger’s current image and evidence status.</p><a href="https://rivcoda.org/1994_cold_case" target="_blank" rel="noreferrer">Riverside County DA 2026 release + facial rendition ↗</a><br><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/jane-doe---desert-center-california" target="_blank" rel="noreferrer">FBI current ViCAP case page ↗</a></article>');
   addResearchNote('Rosebud John Doe · official evidence audit', '<article><span>11</span><h3>Rosebud John Doe · official evidence audit</h3><p>The FBI’s current ViCAP page and April 3, 2025 alert continue to list Texas DPS case 06-10-0406 as unidentified. The remains were recovered October 29, 2006 off County Road 350 near Pond Creek south of Rosebud, and the condition suggested the man had been buried for many years before exposure. The official evidence package documents a hair comb, leather boots, dark blue/navy work pants, and a yellow button-down shirt stamped “RODRIGUEZ D E” inside the collar. The FBI case page preserves photographs of both the shirt and collar stamp. The ViCAP alert names Texas Ranger Brant Johnston, and Texas DPS’s current Company F roster still lists Johnston in Belton. Open Case Ledger’s earlier information-request lane remains pending alongside this expanded public evidence package.</p><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/john-doe---rosebud-texas/" target="_blank" rel="noreferrer">FBI ViCAP case page + evidence images ↗</a><br><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/john-doe---rosebud-texas/vicap-alert-2025-04-03.pdf" target="_blank" rel="noreferrer">April 3, 2025 FBI ViCAP poster ↗</a><br><a href="https://www.dps.texas.gov/section/texas-rangers/company-f" target="_blank" rel="noreferrer">Texas DPS Company F current roster ↗</a></article>');
   addResearchNote('Jane Los Angeles Doe · official image and evidence audit', '<article><span>10</span><h3>Jane Los Angeles Doe · official image and evidence audit</h3><p>NCMEC’s current case page for NCMEC 1184145 / NamUs UP3979 / Medical Examiner case 89-05285 confirms the unidentified girl was found behind the 1200 block of 8th Street on May 25, 1989 and preserves several public identification images plus a printable poster. The page documents her bright blue “Somebody in California Loves Me” shirt; a lion-head ring, turquoise-colored stone ring, crystal-heart ring, I.D.-brand bracelet, pendant bracelet, necklace, and earrings; and the patterned right-thigh tattoo with partially legible lettering. This source is now linked explicitly as the public image/poster package while the Medical Examiner clarification on current forensic identifiers, retained samples, and modern identification review remains pending.</p><a href="https://www.missingkids.org/poster/NCMU/1184145/1" target="_blank" rel="noreferrer">NCMEC case page + poster / identification images ↗</a></article>');
