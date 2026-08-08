@@ -9,6 +9,11 @@
       title: 'Bellport Jane Doe',
       status: 'Historical-society inquiry sent',
       focus: 'Suffolk County’s 2026 cold-case update identifies the case as 99-564229 and says the woman known as “Marie” or “Maria” lived on Michigan Avenue in Bellport and rented from Arthur Kinlaw. Open Case Ledger sent an August 7, 2026 inquiry to the Bellport-Brookhaven Historical Society seeking 1982–1984 directories, address files, tax maps, photographs, clipping files, and other local-history material that could identify the exact Kinlaw residence and occupants.'
+    },
+    {
+      title: 'Pamela Leigh Walton',
+      status: '319 Walnut · property-record route',
+      focus: 'A June 27, 1988 Fayette County court entry lists Pamela Walton, age 25, at 319 Walnut in Carlisle. An official National Park Service Carlisle Historic District inventory independently documents 319 Walnut as a circa-1900 residential house, confirming the address was an established residence in the relevant era. Nicholas County states that PVA property information is public; Open Case Ledger is now tracing the 1988 owner-of-record and deed references through official county property records.'
     }
   ];
 
@@ -21,6 +26,10 @@
     const focus = card.querySelector('.case-focus');
     if (status) status.textContent = update.status;
     if (focus) focus.textContent = update.focus;
+
+    if (update.title === 'Pamela Leigh Walton' && !Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('NPS historic'))) {
+      card.insertAdjacentHTML('beforeend', '<br><a href="https://npgallery.nps.gov/GetAsset/e70fafe5-8a52-4040-bf8d-9385db8bf692/" target="_blank" rel="noreferrer">NPS historic inventory for 319 Walnut ↗</a><br><a href="https://nicholascounty.ky.gov/elected/PVA/Pages/default.aspx" target="_blank" rel="noreferrer">Nicholas County PVA property-record source ↗</a>');
+    }
   });
 
   const ledgerGrid = document.querySelector('#ledger .case-grid');
@@ -52,6 +61,11 @@
   if (researchGrid && !Array.from(researchGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Bellport Jane Doe · Michigan Avenue')) {
     researchGrid.insertAdjacentHTML('afterbegin', `
       <article><span>05</span><h3>Bellport Jane Doe · Michigan Avenue</h3><p>Suffolk County’s 2026 cold-case page confirms that the unidentified woman known as Marie or Maria lived on Michigan Avenue in Bellport and rented from Arthur Kinlaw. An inquiry was sent August 7, 2026 to the Bellport-Brookhaven Historical Society seeking period directories, tax maps, address files, photographs, and clipping files to identify the exact residence and occupants.</p><a href="https://www.suffolkcountyda.org/cold_case/bellport-jane-doe/" target="_blank" rel="noreferrer">Suffolk County official cold-case update ↗</a></article>
+    `);
+  }
+  if (researchGrid && !Array.from(researchGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Pamela Walton · 319 Walnut official sources')) {
+    researchGrid.insertAdjacentHTML('afterbegin', `
+      <article><span>06</span><h3>Pamela Walton · 319 Walnut official sources</h3><p>The June 1988 court listing gives Pamela’s address as 319 Walnut in Carlisle. The National Park Service’s Carlisle Historic District inventory separately identifies 319 Walnut as a circa-1900 residential house, while Nicholas County’s official PVA page confirms that county property information is public. These sources establish the property and the official route for tracing its 1988 owner without relying on later people-search records.</p><a href="https://npgallery.nps.gov/GetAsset/e70fafe5-8a52-4040-bf8d-9385db8bf692/" target="_blank" rel="noreferrer">NPS Carlisle Historic District inventory ↗</a><br><a href="https://nicholascounty.ky.gov/elected/PVA/Pages/default.aspx" target="_blank" rel="noreferrer">Nicholas County PVA ↗</a></article>
     `);
   }
 
