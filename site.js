@@ -30,6 +30,11 @@
       title: 'Medford Jane Doe',
       status: '2026 FGG update · court-file research pending',
       focus: 'Suffolk County District Attorney’s Office says Medford Jane Doe, case 94-564229, remains unidentified and under active investigation. The victim was recovered on December 7, 1994 inside a blue Rubbermaid garbage can along Long Island Avenue in Medford. She was estimated to be 20–30 years old, about 5’1” and 135 pounds, and had a red heart tattoo on the upper left shoulder containing the name ADRIAN. In February 2026 the Cold Case Task Force announced that genetic genealogy indicates Caucasian ancestry with Western European roots, at least 75% attributable to England, Scotland, and Wales, and released a clay reconstruction, updated facial composite, and updated tattoo depiction. A separate Suffolk County Clerk inquiry for public portions of the Robert Yale Shulman court file is already being researched; no duplicate outreach is needed.'
+    },
+    {
+      title: 'Theresa Corley',
+      status: 'MSP request processing · 2026 active DNA work',
+      focus: 'Bellingham Police publicly confirmed in a February 2026 records response that Theresa Corley’s homicide remains an active and ongoing investigation. The department said that since the current chief assumed command in 2023, investigators have collected DNA from persons of interest or people potentially connected to them, followed up on telephone and in-person tips, prepared investigative summaries, and interviewed potential witnesses. Open Case Ledger’s Massachusetts State Police request P008678-080726 is already processing, so no duplicate Bellingham records request is being sent while that lane remains active.'
     }
   ];
 
@@ -49,6 +54,10 @@
 
     if (update.title === 'Medford Jane Doe' && !Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('2026 National Missing Persons Day'))) {
       card.insertAdjacentHTML('beforeend', '<br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">Suffolk DA 2026 National Missing Persons Day update ↗</a>');
+    }
+
+    if (update.title === 'Theresa Corley' && !Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('February 2026 Bellingham response'))) {
+      card.insertAdjacentHTML('beforeend', '<br><a href="https://www.muckrock.com/foi/bellingham-463/ronald-a-moore-report-200921/" target="_blank" rel="noreferrer">February 2026 Bellingham response ↗</a><br><a href="https://www.bellinghamma.org/374/Daily-Press-Quarterly-Arrest-Logs" target="_blank" rel="noreferrer">Bellingham Police records page ↗</a>');
     }
   });
 
@@ -92,6 +101,10 @@
       researchGrid.insertAdjacentHTML('afterbegin', html);
     }
   };
+
+  addResearchNote('Theresa Corley · 2026 active investigation', `
+    <article><span>09</span><h3>Theresa Corley · 2026 active investigation</h3><p>In a February 9, 2026 public-records response, Bellingham Police said Theresa Corley’s homicide remains active and ongoing. The department described substantive investigative work since 2023, including collection of DNA from persons of interest or people potentially connected to them, follow-up on telephone and in-person tips, preparation of investigative summaries, and interviews of potential witnesses. That recent activity strengthens the current active-investigation baseline. Open Case Ledger is therefore waiting on Massachusetts State Police request P008678-080726 rather than duplicating a Bellingham request for the same 1978 offense report.</p><a href="https://www.muckrock.com/foi/bellingham-463/ronald-a-moore-report-200921/" target="_blank" rel="noreferrer">Publicly posted Bellingham Police correspondence ↗</a><br><a href="https://www.bellinghamma.org/374/Daily-Press-Quarterly-Arrest-Logs" target="_blank" rel="noreferrer">Bellingham Police records page ↗</a></article>
+  `);
 
   addResearchNote('Medford Jane Doe · 2026 genetic genealogy update', `
     <article><span>08</span><h3>Medford Jane Doe · 2026 genetic genealogy update</h3><p>Suffolk County’s February 3, 2026 National Missing Persons Day update says recent genetic-genealogy work indicates Medford Jane Doe was Caucasian with Western European ancestry, at least 75% attributable to England, Scotland, and Wales. The Cold Case Task Force also released a clay reconstruction, an updated facial composite, and an updated depiction of the ADRIAN heart tattoo. The case remains open. A pre-existing Suffolk County Clerk inquiry is separately seeking public portions of the Robert Yale Shulman court file for possible victim-identification leads, so no duplicate court outreach is being sent.</p><a href="https://www.suffolkcountyda.org/cold_case/medford-jane-doe/" target="_blank" rel="noreferrer">Suffolk DA Medford Jane Doe case page ↗</a><br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">February 3, 2026 official update ↗</a></article>
