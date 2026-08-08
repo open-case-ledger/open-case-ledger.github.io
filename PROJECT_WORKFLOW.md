@@ -1,5 +1,17 @@
 # Open Case Ledger Project Workflow
 
+## Response / record order of operations
+
+When a new agency email, portal message, attachment, released record, denial, fee notice, routing response, or other substantive case-development arrives, handle it in this order before assigning the next task:
+
+1. Read the full message and inspect every case-related attachment.
+2. Determine exactly what changed and what did not change. Do not overstate an acknowledgment, denial, active-investigation statement, or partial release.
+3. Update every affected live-master spreadsheet tab, including closing, superseding, or rescheduling stale follow-ups.
+4. Decide whether the event belongs on the public website. Substantive records outcomes, released source material, denials that close a records route, new case facts, and meaningful investigative-status changes should normally be reflected publicly. Purely administrative duplicates or internal maintenance may not require a website change.
+5. If the website requires an update, make it and verify the repository change before reporting the task complete.
+6. Explicitly tell the user whether the website was updated or why no website update was needed.
+7. Only after spreadsheet and website synchronization is complete should the next task be assigned.
+
 ## Outbound email preflight
 
 Before recommending, drafting, or sending any outreach email for a case:
