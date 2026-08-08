@@ -50,6 +50,16 @@
     `);
   }
 
+  if (ledgerGrid) {
+    const numberedCards = Array.from(ledgerGrid.querySelectorAll('.case-card'));
+    numberedCards.sort((a, b) => {
+      const aNumber = Number.parseInt(a.querySelector('.case-topline span')?.textContent.trim(), 10) || 0;
+      const bNumber = Number.parseInt(b.querySelector('.case-topline span')?.textContent.trim(), 10) || 0;
+      return bNumber - aNumber;
+    });
+    numberedCards.forEach((card) => ledgerGrid.appendChild(card));
+  }
+
   const recordsGrid = document.querySelector('#records .principles');
   if (recordsGrid && !Array.from(recordsGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Dennis Swain Jr.')) {
     recordsGrid.insertAdjacentHTML('afterbegin', `
