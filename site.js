@@ -35,6 +35,11 @@
       title: 'Theresa Corley',
       status: 'MSP request processing · 2026 active DNA work',
       focus: 'Bellingham Police publicly confirmed in a February 2026 records response that Theresa Corley’s homicide remains an active and ongoing investigation. The department said that since the current chief assumed command in 2023, investigators have collected DNA from persons of interest or people potentially connected to them, followed up on telephone and in-person tips, prepared investigative summaries, and interviewed potential witnesses. Open Case Ledger’s Massachusetts State Police request P008678-080726 is already processing, so no duplicate Bellingham records request is being sent while that lane remains active.'
+    },
+    {
+      title: 'Leah Roberts',
+      status: 'Official timeline · active investigation',
+      focus: 'Whatcom County Sheriff’s Office says Leah Roberts left North Carolina on March 9, 2000. A gas receipt places her in Brooks, Oregon, early March 13; she bought a 2:10 p.m. movie ticket at Bellis Fair Mall in Bellingham later that day; and her Jeep was found abandoned on a Whatcom County logging road on March 18. The original incident report remains withheld because the investigation is active, so current research is limited to public-source chronology, witnesses, locations, and evidence already officially described. The official WCSO case page also provides access to a printable flyer and larger photograph.'
     }
   ];
 
@@ -58,6 +63,19 @@
 
     if (update.title === 'Theresa Corley' && !Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('February 2026 Bellingham response'))) {
       card.insertAdjacentHTML('beforeend', '<br><a href="https://www.muckrock.com/foi/bellingham-463/ronald-a-moore-report-200921/" target="_blank" rel="noreferrer">February 2026 Bellingham response ↗</a><br><a href="https://www.bellinghamma.org/374/Daily-Press-Quarterly-Arrest-Logs" target="_blank" rel="noreferrer">Bellingham Police records page ↗</a>');
+    }
+
+    if (update.title === 'Leah Roberts') {
+      const sourceLinks = Array.from(card.querySelectorAll('a[href="https://www.whatcomcounty.us/292/Missing-Leah-Roberts"]'));
+      sourceLinks.slice(1).forEach((link) => {
+        const previous = link.previousSibling;
+        if (previous && previous.nodeName === 'BR') previous.remove();
+        link.remove();
+      });
+      if (sourceLinks[0]) sourceLinks[0].textContent = 'Whatcom County Sheriff official case page + flyer/photo access ↗';
+      if (!card.querySelector('.official-asset-note')) {
+        card.insertAdjacentHTML('beforeend', '<p class="case-note official-asset-note">Official-source asset audit: WCSO’s case page provides a printable flyer and larger photograph. Open Case Ledger is preserving the verified landing page now and will add the direct file asset once its current URL is independently verified.</p>');
+      }
     }
   });
 
@@ -119,7 +137,7 @@
   `);
 
   addResearchNote('Leah Roberts · official timeline', `
-    <article><span>04</span><h3>Leah Roberts · official timeline</h3><p>The Whatcom County Sheriff’s Office public case page provides the current official chronology for Leah’s March 2000 disappearance and links its printable flyer with a larger photograph. Open Case Ledger is using these official materials as the primary-source baseline while the underlying incident report remains exempt as part of an active investigation.</p><a href="https://www.whatcomcounty.us/292/Missing-Leah-Roberts" target="_blank" rel="noreferrer">Official case page and printable flyer ↗</a></article>
+    <article><span>04</span><h3>Leah Roberts · official timeline</h3><p>The Whatcom County Sheriff’s Office public case page provides the current official chronology for Leah’s March 2000 disappearance and links its printable flyer with a larger photograph. Open Case Ledger is using these official materials as the primary-source baseline while the underlying incident report remains exempt as part of an active investigation.</p><a href="https://www.whatcomcounty.us/292/Missing-Leah-Roberts" target="_blank" rel="noreferrer">Official case page with flyer/photo access ↗</a></article>
   `);
 
   document.querySelectorAll('a[href="documents/wanda-line-fcso-redacted-incident-report-2026-08-07.pdf"]').forEach((link) => {
