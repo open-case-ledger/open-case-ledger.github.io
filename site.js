@@ -18,8 +18,8 @@
     },
     {
       title: 'Bellport Jane Doe',
-      status: 'Historical-society inquiry sent',
-      focus: 'Suffolk County’s 2026 cold-case update identifies the case as 99-564229 and says the woman known as “Marie” or “Maria” lived on Michigan Avenue in Bellport and rented from Arthur Kinlaw. Open Case Ledger sent an August 7, 2026 inquiry to the Bellport-Brookhaven Historical Society seeking 1982–1984 directories, address files, tax maps, photographs, clipping files, and other local-history material that could identify the exact Kinlaw residence and occupants.'
+      status: '2026 official composite · historical inquiry sent',
+      focus: 'Suffolk County says Bellport Jane Doe was known as Marie or Maria and rented a room from Arthur Kinlaw at a Michigan Avenue residence in Bellport. Her remains were recovered in November 1999 from beneath a concrete patio at that residence after information from Kinlaw’s wife. Investigators describe her as a heavyset Black or Hispanic woman, approximately 300 pounds, who used a walker and had previously shattered her femur. A rosary and homemade blue jersey dress were recovered with her remains, and investigators believe she may have been a sex worker from New York City. Suffolk County released an updated composite sketch in February 2026. Open Case Ledger has a separate historical-society inquiry pending for period directories, address files, tax maps, photographs, and clipping files concerning the Michigan Avenue residence; no duplicate police outreach is needed.'
     },
     {
       title: 'Pamela Leigh Walton',
@@ -52,6 +52,10 @@
     const focus = card.querySelector('.case-focus');
     if (status) status.textContent = update.status;
     if (focus) focus.textContent = update.focus;
+
+    if (update.title === 'Bellport Jane Doe' && !Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('2026 updated composite'))) {
+      card.insertAdjacentHTML('beforeend', '<br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">Suffolk DA 2026 updated composite + case details ↗</a>');
+    }
 
     if (update.title === 'Pamela Leigh Walton' && !Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('NPS historic'))) {
       card.insertAdjacentHTML('beforeend', '<br><a href="https://npgallery.nps.gov/GetAsset/e70fafe5-8a52-4040-bf8d-9385db8bf692/" target="_blank" rel="noreferrer">NPS historic inventory for 319 Walnut ↗</a><br><a href="https://nicholascounty.ky.gov/elected/PVA/Pages/default.aspx" target="_blank" rel="noreferrer">Nicholas County PVA property-record source ↗</a>');
@@ -138,7 +142,7 @@
   `);
 
   addResearchNote('Bellport Jane Doe · Michigan Avenue', `
-    <article><span>05</span><h3>Bellport Jane Doe · Michigan Avenue</h3><p>Suffolk County’s 2026 cold-case page confirms that the unidentified woman known as Marie or Maria lived on Michigan Avenue in Bellport and rented from Arthur Kinlaw. An inquiry was sent August 7, 2026 to the Bellport-Brookhaven Historical Society seeking period directories, tax maps, address files, photographs, and clipping files to identify the exact residence and occupants.</p><a href="https://www.suffolkcountyda.org/cold_case/bellport-jane-doe/" target="_blank" rel="noreferrer">Suffolk County official cold-case update ↗</a></article>
+    <article><span>05</span><h3>Bellport Jane Doe · Michigan Avenue</h3><p>Suffolk County’s current cold-case page says the woman known as Marie or Maria rented a room from Arthur Kinlaw at a Michigan Avenue residence in Bellport and was murdered around 1983. Her remains were recovered in November 1999 from beneath a concrete patio at the residence after information supplied by Kinlaw’s wife. Suffolk describes her as a heavyset Black or Hispanic woman, approximately 300 pounds, who used a walker and had previously shattered her femur. A rosary and homemade blue jersey dress were recovered with her remains, and investigators believe she may have been a sex worker from New York City. Suffolk County released an updated composite sketch in February 2026. A separate August 7 historical-society inquiry is seeking period directories, tax maps, address files, photographs, and clipping files to identify the exact Michigan Avenue residence and occupants.</p><a href="https://www.suffolkcountyda.org/cold_case/bellport-jane-doe/" target="_blank" rel="noreferrer">Suffolk County Bellport Jane Doe case page ↗</a><br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">February 3, 2026 updated composite + official release ↗</a></article>
   `);
 
   addResearchNote('Leah Roberts · official timeline', `
