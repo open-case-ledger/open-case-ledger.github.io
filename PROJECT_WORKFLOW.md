@@ -21,6 +21,12 @@ When the next user task is to send an email and the connected Open Case Ledger G
 4. Do not send the message yourself unless the user explicitly asks you to send it.
 5. After the user says the message was sent, verify it in Sent when possible and update the master tracker.
 
+## Tracker review before assigning work
+
+Before assigning the user's next Open Case Ledger task, review the live master spreadsheet for unfinished, overdue, waiting, or newly actionable work rather than relying only on the most recent chat messages. Regularly scan all relevant tabs, including Request Tracker, Agency Queue, Email Log, Response Log, Dashboard, Case Master, Records Received, Today's Queue, Research Queue, Project To-Dos, Legacy Personal Email, Source Materials, and Discrepancies & Gaps.
+
+If a maintenance item is promised for later, such as a website repair or source-preservation task, add it to Project To-Dos so it cannot disappear from the workflow. Close or supersede stale tasks when later events make them obsolete.
+
 ## Task rotation
 
 Do not treat every next task as a new records request. Regularly rotate among:
