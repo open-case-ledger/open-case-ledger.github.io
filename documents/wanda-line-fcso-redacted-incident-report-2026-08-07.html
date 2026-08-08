@@ -6,22 +6,20 @@
   <meta name="description" content="Franklin County Sheriff's Office redacted incident report concerning Wanda Line, released to Open Case Ledger August 7, 2026.">
   <title>Wanda Line · FCSO redacted incident report · Open Case Ledger</title>
   <script async src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js"></script>
   <style>
     :root { color-scheme: dark; }
     * { box-sizing: border-box; }
-    body { margin: 0; background: #101316; color: #f3f0e8; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; line-height: 1.55; }
-    main { width: min(1040px, calc(100% - 32px)); margin: 0 auto; padding: 34px 0 64px; }
-    a { color: #9fd7e8; }
-    .back { display: inline-block; margin-bottom: 24px; }
-    h1 { margin: 0 0 10px; font-size: clamp(1.8rem, 4vw, 3rem); line-height: 1.05; }
-    .lede { max-width: 850px; color: #c9c5bc; margin: 0 0 28px; }
-    .notice { max-width: 850px; border-left: 3px solid #6fa6b7; padding: 12px 16px; background: #171c20; margin-bottom: 30px; }
-    figure { margin: 0 0 28px; }
-    figure a { display: block; width: min(100%, 900px); margin: 0 auto; }
-    figure canvas { display: block; width: 100%; max-width: 900px; height: auto; margin: 0 auto; background: white; border: 1px solid #4a4f53; box-shadow: 0 10px 30px rgba(0,0,0,.25); cursor: zoom-in; }
-    figcaption { max-width: 900px; margin: 8px auto 0; color: #9f9b93; font-size: .9rem; }
-    .render-error { color: #ffb8b8; }
+    body { margin:0; background:#101316; color:#f3f0e8; font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif; line-height:1.55; }
+    main { width:min(1100px,calc(100% - 32px)); margin:0 auto; padding:34px 0 64px; }
+    a { color:#9fd7e8; }
+    .back { display:inline-block; margin-bottom:24px; }
+    h1 { margin:0 0 10px; font-size:clamp(1.8rem,4vw,3rem); line-height:1.05; }
+    .lede { max-width:850px; color:#c9c5bc; margin:0 0 28px; }
+    .notice { max-width:850px; border-left:3px solid #6fa6b7; padding:12px 16px; background:#171c20; margin-bottom:30px; }
+    figure { margin:0 0 28px; }
+    figure img { display:block; width:100%; max-width:1050px; height:auto; margin:0 auto; background:white; border:1px solid #4a4f53; box-shadow:0 10px 30px rgba(0,0,0,.25); }
+    figcaption { max-width:1050px; margin:8px auto 0; color:#9f9b93; font-size:.9rem; }
+    .render-error { color:#ffb8b8; white-space:pre-wrap; }
   </style>
 </head>
 <body>
@@ -29,76 +27,33 @@
   <a class="back" href="../#records">← Back to released public records</a>
   <h1>Wanda Line</h1>
   <p class="lede">Franklin County Sheriff's Office redacted incident report, identifiers C95544/C95545. Released to Open Case Ledger and received August 7, 2026.</p>
-  <div class="notice"><strong>Web facsimile.</strong> The agency supplied this record as a three-page PDF. The pages below are high-contrast browser renderings generated from the original agency PDF. The released text and redactions are preserved; contrast has been optimized for legibility. Click any page to open the rendered page image.</div>
+  <div class="notice"><strong>Web facsimile.</strong> The agency supplied this record as a three-page PDF. The pages below are browser-ready PNG images generated from the agency file. The released text and redactions are preserved.</div>
 
-  <figure><a id="link1" target="_blank" rel="noreferrer" title="Open page 1 as a full-size image"><canvas id="page1" width="900" height="1165" aria-label="Wanda Line FCSO redacted incident report, page 1"></canvas></a><figcaption>Page 1 of 3</figcaption></figure>
-  <figure><a id="link2" target="_blank" rel="noreferrer" title="Open page 2 as a full-size image"><canvas id="page2" width="900" height="1165" aria-label="Wanda Line FCSO redacted incident report, page 2"></canvas></a><figcaption>Page 2 of 3</figcaption></figure>
-  <figure><a id="link3" target="_blank" rel="noreferrer" title="Open page 3 as a full-size image"><canvas id="page3" width="900" height="1165" aria-label="Wanda Line FCSO redacted incident report, page 3"></canvas></a><figcaption>Page 3 of 3</figcaption></figure>
-
-  <p id="render-status" class="render-error" hidden>The record pages could not be rendered in this browser.</p>
+  <figure><img id="page1" alt="Wanda Line FCSO redacted incident report, page 1"><figcaption>Page 1 of 3</figcaption></figure>
+  <figure><img id="page2" alt="Wanda Line FCSO redacted incident report, page 2"><figcaption>Page 2 of 3</figcaption></figure>
+  <figure><img id="page3" alt="Wanda Line FCSO redacted incident report, page 3"><figcaption>Page 3 of 3</figcaption></figure>
+  <p id="render-status" class="render-error" hidden></p>
 </main>
 <script>
 const pages = [
-  { canvas: 'page1', link: 'link1', chunks: ['../assets/wanda-data/p1-1.txt','../assets/wanda-data/p1-2.txt','../assets/wanda-data/p1-3.txt'] },
-  { canvas: 'page2', link: 'link2', chunks: ['../assets/wanda-data/p2-1a.txt','../assets/wanda-data/p2-1b.txt','../assets/wanda-data/p2-2.txt','../assets/wanda-data/p2-3.txt'] },
-  { canvas: 'page3', link: 'link3', chunks: ['../assets/wanda-data/p3-1.txt','../assets/wanda-data/p3-2.txt'] }
+  { id:'page1', chunks:['../assets/wanda-static-v2/p1-1.txt','../assets/wanda-static-v2/p1-2.txt','../assets/wanda-static-v2/p1-3.txt','../assets/wanda-static-v2/p1-4.txt'] },
+  { id:'page2', chunks:['../assets/wanda-static-v2/p2-1.txt','../assets/wanda-static-v2/p2-2.txt','../assets/wanda-static-v2/p2-3.txt','../assets/wanda-static-v2/p2-4.txt'] },
+  { id:'page3', chunks:['../assets/wanda-static-v2/p3-1.txt','../assets/wanda-static-v2/p3-2.txt','../assets/wanda-static-v2/p3-3.txt','../assets/wanda-static-v2/p3-4.txt'] }
 ];
 
-function decodeBase64(b64) {
-  const s = atob(b64);
-  const bytes = new Uint8Array(s.length);
-  for (let i = 0; i < s.length; i++) bytes[i] = s.charCodeAt(i);
-  return bytes;
-}
-
-async function gunzip(bytes) {
-  if ('DecompressionStream' in window) {
-    try {
-      const stream = new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));
-      return new Uint8Array(await new Response(stream).arrayBuffer());
-    } catch (err) {
-      console.warn('Native gzip decompression failed; using compatibility fallback.', err);
-    }
-  }
-  if (window.pako && typeof window.pako.ungzip === 'function') {
-    return window.pako.ungzip(bytes);
-  }
-  throw new Error('No compatible gzip decompressor is available.');
-}
-
-async function renderPage(cfg) {
+async function loadPage(cfg) {
   const parts = await Promise.all(cfg.chunks.map(async url => {
-    const response = await fetch(url, { cache: 'no-store' });
-    if (!response.ok) throw new Error(`Could not load ${url}`);
+    const response = await fetch(url, { cache:'no-store' });
+    if (!response.ok) throw new Error(`Could not load ${url} (${response.status})`);
     return (await response.text()).trim();
   }));
-  const raw = await gunzip(decodeBase64(parts.join('')));
-  const width = 900;
-  const height = 1165;
-  const rowBytes = Math.ceil(width / 8);
-  if (raw.length !== rowBytes * height) throw new Error('Unexpected page-data length.');
-
-  const canvas = document.getElementById(cfg.canvas);
-  const ctx = canvas.getContext('2d');
-  const image = ctx.createImageData(width, height);
-  for (let y = 0; y < height; y++) {
-    for (let x = 0; x < width; x++) {
-      const byte = raw[y * rowBytes + (x >> 3)];
-      const white = (byte & (1 << (7 - (x & 7)))) !== 0;
-      const v = white ? 255 : 0;
-      const p = (y * width + x) * 4;
-      image.data[p] = v;
-      image.data[p + 1] = v;
-      image.data[p + 2] = v;
-      image.data[p + 3] = 255;
-    }
-  }
-  ctx.putImageData(image, 0, 0);
-  document.getElementById(cfg.link).href = canvas.toDataURL('image/png');
+  document.getElementById(cfg.id).src = `data:image/png;base64,${parts.join('')}`;
 }
 
-Promise.all(pages.map(renderPage)).catch(err => {
-  document.getElementById('render-status').hidden = false;
+Promise.all(pages.map(loadPage)).catch(err => {
+  const status = document.getElementById('render-status');
+  status.hidden = false;
+  status.textContent = `Record page load error: ${err.message}`;
   console.error(err);
 });
 </script>
