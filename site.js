@@ -18,6 +18,20 @@
     if (focus) focus.textContent = update.focus;
   });
 
+  const ledgerGrid = document.querySelector('#ledger .case-grid');
+  if (ledgerGrid && !Array.from(ledgerGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Dennis Swain Jr.')) {
+    ledgerGrid.insertAdjacentHTML('afterbegin', `
+      <article class="case-card"><div class="case-topline"><span>14</span><span class="status closed">RPD records request denied</span></div><p class="case-place">Riverside, California · 1994</p><h3>Dennis Swain Jr.</h3><p class="case-focus">Riverside Police Department denied Open Case Ledger request W022110-080726 for Police Report P394260179 on August 7, 2026. The department cites California Government Code § 7923.600(a), the investigatory-record exemption, and released no portion of the requested incident report. The records route is closed; research now returns to public sources unless circumstances change.</p><a href="documents/dennis-swain-riverside-police-denial-2026-08-07.html">Read the Riverside denial letter ↗</a></article>
+    `);
+  }
+
+  const recordsGrid = document.querySelector('#records .principles');
+  if (recordsGrid && !Array.from(recordsGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Dennis Swain Jr.')) {
+    recordsGrid.insertAdjacentHTML('afterbegin', `
+      <article><span>04</span><h3>Dennis Swain Jr.</h3><p>Riverside Police Department denial letter for request W022110-080726, seeking Police Report P394260179. Received August 7, 2026. The department withheld the requested report under California Government Code § 7923.600(a); no investigative records were released.</p><a href="documents/dennis-swain-riverside-police-denial-2026-08-07.html">Open denial letter ↗</a></article>
+    `);
+  }
+
   document.querySelectorAll('a[href="documents/wanda-line-fcso-redacted-incident-report-2026-08-07.pdf"]').forEach((link) => {
     link.href = 'documents/wanda-line-fcso-redacted-incident-report-2026-08-07.html';
     if (link.textContent.includes('PDF')) {
