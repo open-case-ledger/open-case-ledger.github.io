@@ -28,8 +28,8 @@
     },
     {
       title: 'Medford Jane Doe',
-      status: '2026 FGG update · court-file research pending',
-      focus: 'Suffolk County District Attorney’s Office says Medford Jane Doe, case 94-564229, remains unidentified and under active investigation. The victim was recovered on December 7, 1994 inside a blue Rubbermaid garbage can along Long Island Avenue in Medford. She was estimated to be 20–30 years old, about 5’1” and 135 pounds, and had a red heart tattoo on the upper left shoulder containing the name ADRIAN. In February 2026 the Cold Case Task Force announced that genetic genealogy indicates Caucasian ancestry with Western European roots, at least 75% attributable to England, Scotland, and Wales, and released a clay reconstruction, updated facial composite, and updated tattoo depiction. A separate Suffolk County Clerk inquiry for public portions of the Robert Yale Shulman court file is already being researched; no duplicate outreach is needed.'
+      status: '2026 FBI flyer · court-file research pending',
+      focus: 'Suffolk County District Attorney’s Office says Medford Jane Doe remains unidentified and under active investigation. She was recovered on December 7, 1994 inside a blue Rubbermaid garbage can along Long Island Avenue in Medford and had a red heart tattoo on the upper left shoulder containing the name ADRIAN. Suffolk County’s February 2026 update says genetic genealogy indicates Western European ancestry, at least 75% attributable to England, Scotland, and Wales. An FBI ViCAP alert released April 23, 2026 adds a scar in the center of the right calf, a black J.J. Cochran-label halter top, a Hilton Hotel bathmat, and confirms dental records are available. The FBI flyer also preserves the facial reconstructions and tattoo depiction in one official downloadable source. A separate Suffolk County Clerk inquiry for public portions of the Robert Yale Shulman court file is already being researched; no duplicate outreach is needed.'
     },
     {
       title: 'Theresa Corley',
@@ -57,8 +57,13 @@
       card.insertAdjacentHTML('beforeend', '<br><a href="https://npgallery.nps.gov/GetAsset/e70fafe5-8a52-4040-bf8d-9385db8bf692/" target="_blank" rel="noreferrer">NPS historic inventory for 319 Walnut ↗</a><br><a href="https://nicholascounty.ky.gov/elected/PVA/Pages/default.aspx" target="_blank" rel="noreferrer">Nicholas County PVA property-record source ↗</a>');
     }
 
-    if (update.title === 'Medford Jane Doe' && !Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('2026 National Missing Persons Day'))) {
-      card.insertAdjacentHTML('beforeend', '<br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">Suffolk DA 2026 National Missing Persons Day update ↗</a>');
+    if (update.title === 'Medford Jane Doe') {
+      if (!Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('2026 National Missing Persons Day'))) {
+        card.insertAdjacentHTML('beforeend', '<br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">Suffolk DA 2026 National Missing Persons Day update ↗</a>');
+      }
+      if (!Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('FBI ViCAP flyer'))) {
+        card.insertAdjacentHTML('beforeend', '<br><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/jane-doe---medford-new-york/medford-ny.pdf" target="_blank" rel="noreferrer">FBI ViCAP flyer with reconstructions + tattoo ↗</a>');
+      }
     }
 
     if (update.title === 'Theresa Corley' && !Array.from(card.querySelectorAll('a')).some((link) => link.textContent.includes('February 2026 Bellingham response'))) {
@@ -125,7 +130,7 @@
   `);
 
   addResearchNote('Medford Jane Doe · 2026 genetic genealogy update', `
-    <article><span>08</span><h3>Medford Jane Doe · 2026 genetic genealogy update</h3><p>Suffolk County’s February 3, 2026 National Missing Persons Day update says recent genetic-genealogy work indicates Medford Jane Doe was Caucasian with Western European ancestry, at least 75% attributable to England, Scotland, and Wales. The Cold Case Task Force also released a clay reconstruction, an updated facial composite, and an updated depiction of the ADRIAN heart tattoo. The case remains open. A pre-existing Suffolk County Clerk inquiry is separately seeking public portions of the Robert Yale Shulman court file for possible victim-identification leads, so no duplicate court outreach is being sent.</p><a href="https://www.suffolkcountyda.org/cold_case/medford-jane-doe/" target="_blank" rel="noreferrer">Suffolk DA Medford Jane Doe case page ↗</a><br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">February 3, 2026 official update ↗</a></article>
+    <article><span>08</span><h3>Medford Jane Doe · 2026 genetic genealogy update</h3><p>Suffolk County’s February 3, 2026 National Missing Persons Day update says recent genetic-genealogy work indicates Medford Jane Doe was Caucasian with Western European ancestry, at least 75% attributable to England, Scotland, and Wales. The Cold Case Task Force released a clay reconstruction, an updated facial composite, and an updated depiction of the ADRIAN heart tattoo. An FBI ViCAP alert released April 23, 2026 adds a scar in the center of the right calf, a black J.J. Cochran-label halter top, a Hilton Hotel bathmat, and confirms dental records are available. The FBI flyer collects the reconstructions and tattoo image in one official downloadable source. The case remains open. A pre-existing Suffolk County Clerk inquiry is separately seeking public portions of the Robert Yale Shulman court file for possible victim-identification leads, so no duplicate court outreach is being sent.</p><a href="https://www.suffolkcountyda.org/cold_case/medford-jane-doe/" target="_blank" rel="noreferrer">Suffolk DA Medford Jane Doe case page ↗</a><br><a href="https://www.suffolkcountyda.org/national-missing-persons-day/" target="_blank" rel="noreferrer">February 3, 2026 official update ↗</a><br><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/jane-doe---medford-new-york/medford-ny.pdf" target="_blank" rel="noreferrer">April 23, 2026 FBI ViCAP flyer with reconstructions + tattoo ↗</a></article>
   `);
 
   addResearchNote('Pamela Walton · 319 Walnut official sources', `
