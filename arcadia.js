@@ -12,10 +12,28 @@
   }
 
   if (ledgerGrid) {
+    const doswellCard = Array.from(ledgerGrid.querySelectorAll('.case-card')).find((card) => card.querySelector('h3')?.textContent.trim() === 'Doswell John Doe');
+    if (doswellCard) {
+      const status = doswellCard.querySelector('.status');
+      const focus = doswellCard.querySelector('.case-focus');
+      if (status) {
+        status.textContent = 'VSP records request closed · nonresident denial';
+        status.classList.remove('waiting');
+        status.classList.add('closed');
+      }
+      if (focus) focus.textContent = 'Virginia State Police closed Open Case Ledger request 26-7697 on August 10, 2026 without releasing records. The closure cites Virginia Code § 2.2-3704(A), which limits mandatory Virginia FOIA access to Virginia citizens and qualifying Virginia media representatives. This records route is closed; the underlying identification research continues through public sources.';
+      if (!Array.from(doswellCard.querySelectorAll('a')).some((link) => link.href.includes('coldcase.vsp.virginia.gov'))) {
+        doswellCard.insertAdjacentHTML('beforeend', '<br><a href="https://coldcase.vsp.virginia.gov/virginia-state-police/case/virginia-state-police-case-90-18700/" target="_blank" rel="noreferrer">Virginia State Police official case page ↗</a>');
+      }
+    }
+
     const cards = Array.from(ledgerGrid.querySelectorAll('.case-card'));
+    const currentDoswell = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Doswell John Doe');
+    const carolynCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Carolyn J. Mills');
+    const ruthCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Ruth Elizabeth Brenneman');
     const arcadiaCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Arcadia John Doe');
     const houstonCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Houston Jane Doe');
-    const priorityCards = [arcadiaCard, houstonCard].filter(Boolean);
+    const priorityCards = [currentDoswell, carolynCard, ruthCard, arcadiaCard, houstonCard].filter(Boolean);
     const orderedCards = [...priorityCards, ...cards.filter((card) => !priorityCards.includes(card))];
     orderedCards.forEach((card, index) => {
       const number = card.querySelector('.case-topline span');
