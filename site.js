@@ -7,7 +7,6 @@
   const unpublishedUntilAcknowledged = new Set([
     'Rockledge Jane Doe',
     'Newark Jane Doe',
-    'North Port John Doe',
     'Richmond John Doe',
     'Sandra Burt Carrera',
     'Dorchester Jane Doe'
