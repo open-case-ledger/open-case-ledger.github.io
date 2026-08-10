@@ -18,6 +18,13 @@
     else ledgerGrid.insertAdjacentHTML('afterbegin', dorchesterCard);
   }
 
+  if (ledgerGrid && !Array.from(ledgerGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'North Port John Doe')) {
+    const northPortCard = '<article class="case-card"><div class="case-topline"><span>00</span><span class="status waiting">NPPD request acknowledged · cost estimate pending</span></div><p class="case-place">North Port, Florida · Unidentified 1996</p><h3>North Port John Doe</h3><p class="case-focus">The FBI’s current ViCAP notice says this unidentified man was recovered in North Port on January 1, 1996 after a resident reported that his dog had brought home human remains. Investigators recovered most of the remains. The FBI describes him as approximately 35–45 years old, about 6\'2", brown-haired, Native American, with a large or muscular build and a previously broken nose. No clothing or personal belongings were recovered. ViCAP further states that DNA testing suggests descent connected to the Mattaponi Indian Tribe of Virginia. North Port Police Records Manager Linda M. Yates acknowledged Open Case Ledger’s request on August 10, 2026. Records staff are identifying and quantifying responsive records and will provide an applicable cost estimate. No fee has been approved and no records have been released yet.</p><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/john-doe---north-port-florida" target="_blank" rel="noreferrer">FBI ViCAP official case page ↗</a><br><a href="https://www.northportfl.gov/City-Services-and-Safety/Emergency-Services/Police/Records" target="_blank" rel="noreferrer">North Port Police records page ↗</a></article>';
+    const dorchesterCard = Array.from(ledgerGrid.querySelectorAll('.case-card')).find((card) => card.querySelector('h3')?.textContent.trim() === 'Dorchester Jane Doe');
+    if (dorchesterCard) dorchesterCard.insertAdjacentHTML('afterend', northPortCard);
+    else ledgerGrid.insertAdjacentHTML('afterbegin', northPortCard);
+  }
+
   if (ledgerGrid) {
     const northPortCard = Array.from(ledgerGrid.querySelectorAll('.case-card')).find((card) => card.querySelector('h3')?.textContent.trim() === 'North Port John Doe');
     if (northPortCard) {
@@ -49,7 +56,8 @@
     const arcadiaCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Arcadia John Doe');
     const houstonCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Houston Jane Doe');
     const dorchesterCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Dorchester Jane Doe');
-    const priorityCards = [currentDoswell, carolynCard, ruthCard, arcadiaCard, houstonCard, dorchesterCard].filter(Boolean);
+    const northPortPriorityCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'North Port John Doe');
+    const priorityCards = [currentDoswell, carolynCard, ruthCard, arcadiaCard, houstonCard, dorchesterCard, northPortPriorityCard].filter(Boolean);
     const orderedCards = [...priorityCards, ...cards.filter((card) => !priorityCards.includes(card))];
     orderedCards.forEach((card, index) => {
       const number = card.querySelector('.case-topline span');
@@ -60,7 +68,7 @@
 
   const researchGrid = document.querySelector('#research-notes .principles');
   if (researchGrid && !Array.from(researchGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Arcadia John Doe · shirt provenance and identification status')) {
-    researchGrid.insertAdjacentHTML('afterbegin', '<article><span>00</span><h3>Arcadia John Doe · shirt provenance and identification status</h3><p>Official sources preserve two unusually specific identification leads. DeSoto County Sheriff’s Office documents the victim’s Klippel-Feil syndrome and displays the 2015 LSU facial reconstruction; FBI ViCAP documents the blue-and-white work shirt marked “Gary” and “Shore Mechanical Corp.” The public official record does not state what investigators ultimately established about that shirt’s provenance. Open Case Ledger therefore submitted a narrow records request asking for releasable material sufficient to show the outcome of the shirt lead and whether DNA suitable for modern forensic genetic genealogy exists or has been used. DeSoto County Sheriff acknowledged request PRR-2026-1864 on August 8, 2026.</p><a href="https://www.desotosheriff.com/community/cold_cases.php" target="_blank" rel="noreferrer">DeSoto County Sheriff official cold-case page ↗</a><br><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/john-doe-fl" target="_blank" rel="noreferrer">FBI ViCAP official case page ↗</a></article>');
+    researchGrid.insertAdjacentHTML('afterbegin', '<article><span>00</span><h3>Arcadia John Doe · shirt provenance and identification status</h3><p>Official sources preserve two unusually specific identification leads. DeSoto County Sheriff’s Office documents the victim’s Klippel-Feil syndrome and displays the 2015 LSU facial reconstruction; FBI ViCAP documents the blue-and-white work shirt marked “Gary” and “Shore Mechanical Corp.” The public official record does not state what investigators ultimately established about that shirt’s provenance. Open Case Ledger therefore submitted a narrow records request asking for releasable material sufficient to show the outcome of the shirt lead and whether DNA suitable for modern forensic genetic genealogy exists or has been used. DeSoto County Sheriff acknowledged request PRR-2026-1864 on August 8, 2026.</p><a href="https://www.desotosheriff.com/community/cold_cases.php" target="_blank" rel="noreferrer">DeSoto County Sheriff official cold-case page ↗</a><br><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/john-doe-fl" target="_blank" rel="noreferrer">FBI ViCAP case page ↗</a></article>');
   }
 
   if (researchGrid && !Array.from(researchGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Houston Jane Doe · promotional-shirt provenance')) {
