@@ -57,7 +57,7 @@
     const houstonCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Houston Jane Doe');
     const dorchesterCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Dorchester Jane Doe');
     const northPortPriorityCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'North Port John Doe');
-    const priorityCards = [currentDoswell, carolynCard, ruthCard, arcadiaCard, houstonCard, dorchesterCard, northPortPriorityCard].filter(Boolean);
+    const priorityCards = [northPortPriorityCard, currentDoswell, carolynCard, ruthCard, arcadiaCard, houstonCard, dorchesterCard].filter(Boolean);
     const orderedCards = [...priorityCards, ...cards.filter((card) => !priorityCards.includes(card))];
     orderedCards.forEach((card, index) => {
       const number = card.querySelector('.case-topline span');
