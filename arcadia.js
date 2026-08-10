@@ -11,6 +11,13 @@
     else ledgerGrid.insertAdjacentHTML('afterbegin', houstonCard);
   }
 
+  if (ledgerGrid && !Array.from(ledgerGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Dorchester Jane Doe')) {
+    const dorchesterCard = '<article class="case-card"><div class="case-topline"><span>00</span><span class="status waiting">Boston request acknowledged · identification research active</span></div><p class="case-place">Dorchester, Massachusetts · Found 2005</p><h3>Dorchester Jane Doe</h3><p class="case-focus">The FBI says skeletal remains of an unidentified woman were discovered on October 14, 2005 inside a chimney at a Dorchester apartment complex. She was estimated to be 25–40 years old and about 5 feet 2 inches tall. Investigators documented significant dental work, including a distinctive partial dental plate and reconstructed porcelain teeth, and the FBI’s current ViCAP page says forensic genealogy resolves her ancestry back to Brazil as a place of origin. Boston formally acknowledged Open Case Ledger’s public-records request on August 10, 2026 as R-2026-906. The request seeks the recovery report and releasable identification-related material concerning dental work, DNA testing, forensic genetic genealogy, current status, and updated public identification materials.</p><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/jane-doe---dorchester-massachusetts" target="_blank" rel="noreferrer">FBI ViCAP official case page ↗</a><br><a href="https://www.boston.gov/departments/public-records" target="_blank" rel="noreferrer">City of Boston public-records page ↗</a></article>';
+    const houstonCard = Array.from(ledgerGrid.querySelectorAll('.case-card')).find((card) => card.querySelector('h3')?.textContent.trim() === 'Houston Jane Doe');
+    if (houstonCard) houstonCard.insertAdjacentHTML('afterend', dorchesterCard);
+    else ledgerGrid.insertAdjacentHTML('afterbegin', dorchesterCard);
+  }
+
   if (ledgerGrid) {
     const doswellCard = Array.from(ledgerGrid.querySelectorAll('.case-card')).find((card) => card.querySelector('h3')?.textContent.trim() === 'Doswell John Doe');
     if (doswellCard) {
@@ -33,7 +40,8 @@
     const ruthCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Ruth Elizabeth Brenneman');
     const arcadiaCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Arcadia John Doe');
     const houstonCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Houston Jane Doe');
-    const priorityCards = [currentDoswell, carolynCard, ruthCard, arcadiaCard, houstonCard].filter(Boolean);
+    const dorchesterCard = cards.find((card) => card.querySelector('h3')?.textContent.trim() === 'Dorchester Jane Doe');
+    const priorityCards = [currentDoswell, carolynCard, ruthCard, arcadiaCard, houstonCard, dorchesterCard].filter(Boolean);
     const orderedCards = [...priorityCards, ...cards.filter((card) => !priorityCards.includes(card))];
     orderedCards.forEach((card, index) => {
       const number = card.querySelector('.case-topline span');
@@ -49,6 +57,10 @@
 
   if (researchGrid && !Array.from(researchGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Houston Jane Doe · promotional-shirt provenance')) {
     researchGrid.insertAdjacentHTML('afterbegin', '<article><span>00</span><h3>Houston Jane Doe · promotional-shirt provenance</h3><p>The tan Gulf Coast Sportswear shirt recovered with Houston Jane Doe carries three unusually specific references: “Sam’s Place,” “97 Rock,” and “Houston Gamblers.” Texas DPS preserves the shirt wording in its official unidentified-person bulletin. On August 8, 2026, Houston History Research Center reported that staff had run a preliminary Houston Chronicle Historical Archive search using “97 Rock” and “Gulf.” That search has not established a documented event or distribution channel for the shirt. A specialized Houston Gamblers historical archive also preserves extensive 1984–1985 team material and already features this Jane Doe; that material is being treated as a secondary historical lead unless matched to contemporaneous documentation.</p><a href="https://www.dps.texas.gov/apps/mpch/Unidentified/unPoster/U8710006" target="_blank" rel="noreferrer">Texas DPS unidentified-person bulletin ↗</a><br><a href="https://www.houston-gamblers.com/" target="_blank" rel="noreferrer">Houston Gamblers historical archive ↗</a></article>');
+  }
+
+  if (researchGrid && !Array.from(researchGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Dorchester Jane Doe · dental and forensic identification status')) {
+    researchGrid.insertAdjacentHTML('afterbegin', '<article><span>00</span><h3>Dorchester Jane Doe · dental and forensic identification status</h3><p>The FBI’s current ViCAP page provides a strong public identification baseline: the unidentified woman recovered from a Dorchester chimney in 2005 had distinctive restorative dental work, including a partial dental plate and reconstructed porcelain teeth, and forensic genealogy now points to Brazil as a place of ancestral origin. What remains publicly unclear is how that ancestry finding was developed, what current DNA or forensic-genetic-genealogy work is active, and whether Boston holds additional releasable recovery or identification material. City of Boston request R-2026-906 was acknowledged on August 10, 2026; Open Case Ledger is waiting for the substantive records response before drawing further conclusions.</p><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/jane-doe---dorchester-massachusetts" target="_blank" rel="noreferrer">FBI ViCAP official case page ↗</a><br><a href="https://www.boston.gov/departments/public-records" target="_blank" rel="noreferrer">City of Boston public-records page ↗</a></article>');
   }
 
   if (researchGrid) {
