@@ -87,4 +87,14 @@
       researchGrid.appendChild(article);
     });
   }
+
+  if (ledgerGrid && !Array.from(ledgerGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Sandra Burt Carrera')) {
+    const sandraCard = '<article class="case-card"><div class="case-topline"><span>00</span><span class="status waiting">ACPD confirms ongoing homicide investigation</span></div><p class="case-place">Arlington, Virginia · 1991</p><h3>Sandra Burt Carrera</h3><p class="case-focus">The FBI says 41-year-old Sandra Burt Carrera was found deceased on January 15, 1991 at the bottom of the stairs in her Windgate neighborhood townhome in Arlington. Her cause of death was a gunshot wound and the case was ruled a homicide; the FBI says nothing in the home appeared disturbed and nothing was taken. On August 10, 2026, Arlington County Police Department directly confirmed to Open Case Ledger that the homicide remains an ongoing criminal investigation. No investigative records were released. Anyone with information should use the official FBI or Arlington County Police tip routes.</p><a href="https://www.fbi.gov/wanted/vicap/homicides-and-sexual-assaults/sandra-burt-carrera---arlington-virginia" target="_blank" rel="noreferrer">FBI ViCAP official case page ↗</a><br><a href="https://www.arlingtonva.us/Government/Departments/Police-Department" target="_blank" rel="noreferrer">Arlington County Police Department ↗</a></article>';
+    ledgerGrid.insertAdjacentHTML('afterbegin', sandraCard);
+    const cards = Array.from(ledgerGrid.querySelectorAll('.case-card'));
+    cards.forEach((card, index) => {
+      const number = card.querySelector('.case-topline span');
+      if (number) number.textContent = String(cards.length - index).padStart(2, '0');
+    });
+  }
 })();
