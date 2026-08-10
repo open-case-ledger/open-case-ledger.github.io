@@ -19,6 +19,14 @@
   }
 
   if (ledgerGrid) {
+    const northPortCard = Array.from(ledgerGrid.querySelectorAll('.case-card')).find((card) => card.querySelector('h3')?.textContent.trim() === 'North Port John Doe');
+    if (northPortCard) {
+      const status = northPortCard.querySelector('.status');
+      const focus = northPortCard.querySelector('.case-focus');
+      if (status) status.textContent = 'NPPD request acknowledged · cost estimate pending';
+      if (focus) focus.textContent = 'The FBI’s current ViCAP notice says this unidentified man was recovered in North Port on January 1, 1996 after a resident reported that his dog had brought home human remains. Investigators recovered most of the remains. The FBI describes him as approximately 35–45 years old, about 6\'2", brown-haired, Native American, with a large or muscular build and a previously broken nose. No clothing or personal belongings were recovered. ViCAP further states that DNA testing suggests descent connected to the Mattaponi Indian Tribe of Virginia. North Port Police Records Manager Linda M. Yates acknowledged Open Case Ledger’s request on August 10, 2026. Records staff are identifying and quantifying responsive records and will provide an applicable cost estimate. No fee has been approved and no records have been released yet.';
+    }
+
     const doswellCard = Array.from(ledgerGrid.querySelectorAll('.case-card')).find((card) => card.querySelector('h3')?.textContent.trim() === 'Doswell John Doe');
     if (doswellCard) {
       const status = doswellCard.querySelector('.status');
