@@ -97,4 +97,19 @@
       if (number) number.textContent = String(cards.length - index).padStart(2, '0');
     });
   }
+
+  if (ledgerGrid && !Array.from(ledgerGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Anthony Reed')) {
+    const anthonyCard = '<article class="case-card"><div class="case-topline"><span>00</span><span class="status waiting">TPD confirms open homicide · records withheld</span></div><p class="case-place">Tampa, Florida · 1995</p><h3>Anthony Reed</h3><p class="case-focus">The City of Tampa says Anthony Reed was traveling eastbound near the 1400 block of East Hillsborough Avenue on June 24, 1995 when he was wounded and later died at St. Joseph\'s Hospital. On August 11, 2026, Tampa Police Records directly confirmed that case 1995-43243 is still open and withheld the investigative record under Florida\'s active criminal intelligence and investigative information exemption. The records lane is closed while the case remains active; public-source research now focuses on timing, movement or vehicle details, witnesses, and other recognition cues.</p><a href="cases/anthony-reed.html">Open the Anthony Reed case page ↗</a><br><a href="https://www.tampa.gov/unsolved/anthony-reed-1995-43243" target="_blank" rel="noreferrer">City of Tampa official case page ↗</a></article>';
+    ledgerGrid.insertAdjacentHTML('afterbegin', anthonyCard);
+  }
+
+  if (ledgerGrid) {
+    const anthonyCard = Array.from(ledgerGrid.querySelectorAll('.case-card')).find((card) => card.querySelector('h3')?.textContent.trim() === 'Anthony Reed');
+    if (anthonyCard) ledgerGrid.prepend(anthonyCard);
+    const cards = Array.from(ledgerGrid.querySelectorAll('.case-card'));
+    cards.forEach((card, index) => {
+      const number = card.querySelector('.case-topline span');
+      if (number) number.textContent = String(cards.length - index).padStart(2, '0');
+    });
+  }
 })();
