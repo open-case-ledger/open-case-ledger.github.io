@@ -158,6 +158,8 @@
     cards.sort((a, b) => {
       const aTitle = a.querySelector('h3')?.textContent.trim();
       const bTitle = b.querySelector('h3')?.textContent.trim();
+      if (aTitle === 'Nicoleta Hamlett') return -1;
+      if (bTitle === 'Nicoleta Hamlett') return 1;
       if (aTitle === 'Wanda Line') return -1;
       if (bTitle === 'Wanda Line') return 1;
       const aNumber = Number.parseInt(a.querySelector('.case-topline span')?.textContent.trim(), 10) || 0;
