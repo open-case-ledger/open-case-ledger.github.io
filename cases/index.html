@@ -85,6 +85,9 @@
     }
 
     const cards = () => Array.from(grid.querySelectorAll('.case-card'));
+    const nicoletaCard = cards().find((card) => card.querySelector('h3')?.textContent.trim() === 'Nicoleta Hamlett');
+    if (nicoletaCard) grid.prepend(nicoletaCard);
+
     cards().forEach((card, index, all) => {
       const number = card.querySelector('.case-topline span');
       if (number) number.textContent = String(all.length - index).padStart(2, '0');
