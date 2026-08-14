@@ -106,6 +106,8 @@
   if (ledgerGrid) {
     const anthonyCard = Array.from(ledgerGrid.querySelectorAll('.case-card')).find((card) => card.querySelector('h3')?.textContent.trim() === 'Anthony Reed');
     if (anthonyCard) ledgerGrid.prepend(anthonyCard);
+    const walterCard = Array.from(ledgerGrid.querySelectorAll('.case-card')).find((card) => card.querySelector('h3')?.textContent.trim() === 'Walter A. Mosier');
+    if (walterCard) ledgerGrid.prepend(walterCard);
     const cards = Array.from(ledgerGrid.querySelectorAll('.case-card'));
     cards.forEach((card, index) => {
       const number = card.querySelector('.case-topline span');
