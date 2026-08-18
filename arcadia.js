@@ -76,7 +76,7 @@
   }
 
   if (researchGrid && !Array.from(researchGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Dorchester Jane Doe · dental and forensic identification status')) {
-    researchGrid.insertAdjacentHTML('afterbegin', '<article><span>00</span><h3>Dorchester Jane Doe · dental and forensic identification status</h3><p>The FBI’s current ViCAP page provides a strong public identification baseline: the unidentified woman recovered from a Dorchester chimney in 2005 had distinctive restorative dental work, including a partial dental plate and reconstructed porcelain teeth, and forensic genealogy now points to Brazil as a place of ancestral origin. What remains publicly unclear is how that ancestry finding was developed, what current DNA or forensic-genetic-genealogy work is active, and whether Boston holds additional releasable recovery or identification material. City Records intake R-2026-906 was acknowledged on August 10, 2026 and transferred the same day to Boston Police Department as active request B-2026-1026; Open Case Ledger is waiting for the substantive police records response before drawing further conclusions.</p><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/jane-doe---dorchester-massachusetts" target="_blank" rel="noreferrer">FBI ViCAP official case page ↗</a><br><a href="https://www.boston.gov/departments/public-records" target="_blank" rel="noreferrer">City of Boston public-records page ↗</a></article>');
+    researchGrid.insertAdjacentHTML('afterbegin', '<article><span>00</span><h3>Dorchester Jane Doe · dental and forensic identification status</h3><p>The FBI’s current ViCAP page provides a strong public identification baseline: the unidentified woman recovered from a Dorchester chimney in 2005 had distinctive restorative dental work, including a partial dental plate and reconstructed porcelain teeth, and forensic genealogy now points to Brazil as a place of origin. What remains publicly unclear is how that ancestry finding was developed, what current DNA or forensic-genetic-genealogy work is active, and whether Boston holds additional releasable recovery or identification material. City Records intake R-2026-906 was acknowledged on August 10, 2026 and transferred the same day to Boston Police Department as active request B-2026-1026; Open Case Ledger is waiting for the substantive police records response before drawing further conclusions.</p><a href="https://www.fbi.gov/wanted/vicap/unidentified-persons/jane-doe---dorchester-massachusetts" target="_blank" rel="noreferrer">FBI ViCAP official case page ↗</a><br><a href="https://www.boston.gov/departments/public-records" target="_blank" rel="noreferrer">City of Boston public-records page ↗</a></article>');
   }
 
   if (researchGrid) {
@@ -108,6 +108,21 @@
     if (anthonyCard) ledgerGrid.prepend(anthonyCard);
     const walterCard = Array.from(ledgerGrid.querySelectorAll('.case-card')).find((card) => card.querySelector('h3')?.textContent.trim() === 'Walter A. Mosier');
     if (walterCard) ledgerGrid.prepend(walterCard);
+    const cards = Array.from(ledgerGrid.querySelectorAll('.case-card'));
+    cards.forEach((card, index) => {
+      const number = card.querySelector('.case-topline span');
+      if (number) number.textContent = String(cards.length - index).padStart(2, '0');
+    });
+  }
+
+  if (ledgerGrid && !Array.from(ledgerGrid.querySelectorAll('h3')).some((heading) => heading.textContent.trim() === 'Refugio County Jane Doe')) {
+    const refugioCard = '<article class="case-card"><div class="case-topline"><span>00</span><span class="status waiting">FGG completed · GEDmatch Pro eligible · search results not public</span></div><p class="case-place">Refugio County, Texas · Found 1992</p><h3>Refugio County Jane Doe</h3><p class="case-focus">Texas DPS released basic information showing that forensic genetic genealogy testing had already been conducted on this unidentified homicide victim by March 27, 2026. Texas Ranger Nathan Mutz received a University of North Texas Center for Human Identification FGG laboratory report, and the resulting genetic data was eligible for entry and searching in GEDmatch Pro. A subsequent report was expected to provide search results and further recommendations. DPS released the basic information at no cost but withheld the remaining investigative material under Texas Government Code § 552.108(a)(1).</p><a href="cases/refugio-county-jane-doe.html">Open the Refugio County Jane Doe case page ↗</a><br><a href="https://www.dps.texas.gov/news/investigators-seek-publics-help-identify-womans-remains-refugio-co-cold-case" target="_blank" rel="noreferrer">Texas DPS official case release ↗</a></article>';
+    ledgerGrid.insertAdjacentHTML('afterbegin', refugioCard);
+  }
+
+  if (ledgerGrid) {
+    const refugioCard = Array.from(ledgerGrid.querySelectorAll('.case-card')).find((card) => card.querySelector('h3')?.textContent.trim() === 'Refugio County Jane Doe');
+    if (refugioCard) ledgerGrid.prepend(refugioCard);
     const cards = Array.from(ledgerGrid.querySelectorAll('.case-card'));
     cards.forEach((card, index) => {
       const number = card.querySelector('.case-topline span');
