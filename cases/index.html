@@ -15,6 +15,12 @@
     .case-search label{display:block;margin-bottom:10px;font:800 11px/1.2 Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--red)}
     .case-search input{width:100%;padding:16px 18px;border:1px solid var(--ink);background:#fffdf7;color:var(--ink);font:16px/1.4 Arial,sans-serif}
     .search-meta{margin:12px 0 0;font:700 11px/1.4 Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;color:#625d55}
+    .search-results{display:grid;gap:8px;margin:14px 0 0;padding:0;list-style:none}
+    .search-results[hidden]{display:none}
+    .search-results a{display:block;padding:12px 14px;border:1px solid var(--line);background:#fffdf7;color:var(--ink);text-decoration:none}
+    .search-results a:hover,.search-results a:focus-visible{border-color:var(--red);color:var(--red)}
+    .search-result-title{display:block;font:800 14px/1.35 Arial,sans-serif}
+    .search-result-place{display:block;margin-top:4px;color:#625d55;font:700 11px/1.4 Arial,sans-serif;letter-spacing:.05em;text-transform:uppercase}
     .archive-loading{padding:30px 0;color:#c9c4b9;font-size:17px}
     .archive-actions{margin-top:34px}
   </style>
@@ -33,6 +39,7 @@
       <label for="case-search-input">Search public cases</label>
       <input id="case-search-input" type="search" placeholder="Try a name, city, state, year, agency, or keyword" autocomplete="off" disabled>
       <p class="search-meta" id="case-search-meta" aria-live="polite">Loading the public ledger…</p>
+      <ul class="search-results" id="case-search-results" aria-label="Matching cases" hidden></ul>
     </div>
     <div class="actions archive-actions"><a class="text-link" href="./#ledger">← Back to the homepage ledger</a></div>
   </section>
@@ -48,6 +55,7 @@
   const grid = document.getElementById('all-case-grid');
   const input = document.getElementById('case-search-input');
   const meta = document.getElementById('case-search-meta');
+  const results = document.getElementById('case-search-results');
 
   const loadScript = (src) => new Promise((resolve, reject) => {
     const script = document.createElement('script');
@@ -112,14 +120,38 @@
     cards().forEach((card, index, all) => {
       const number = card.querySelector('.case-topline span');
       if (number) number.textContent = String(all.length - index).padStart(2, '0');
+      card.id = `case-result-${index + 1}`;
     });
     const normalize = (value) => value.toLocaleLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g, '');
 
     const updateMeta = () => {
       const total = cards().length;
-      const visible = cards().filter((card) => !card.hidden).length;
+      const visibleCards = cards().filter((card) => !card.hidden);
       const query = input.value.trim();
-      meta.textContent = query ? `${visible} of ${total} public cases match` : `${total} public cases`;
+      meta.textContent = query ? `${visibleCards.length} of ${total} public cases match` : `${total} public cases`;
+
+      results.replaceChildren();
+      results.hidden = !query || visibleCards.length === 0;
+      if (results.hidden) return;
+
+      const fragment = document.createDocumentFragment();
+      visibleCards.forEach((card) => {
+        const item = document.createElement('li');
+        const link = document.createElement('a');
+        const title = document.createElement('span');
+        const place = document.createElement('span');
+
+        link.href = `#${card.id}`;
+        title.className = 'search-result-title';
+        title.textContent = card.querySelector('h3')?.textContent.trim() || 'Case entry';
+        place.className = 'search-result-place';
+        place.textContent = card.querySelector('.case-place')?.textContent.trim() || 'Open case details';
+
+        link.append(title, place);
+        item.append(link);
+        fragment.append(item);
+      });
+      results.append(fragment);
     };
 
     input.disabled = false;
