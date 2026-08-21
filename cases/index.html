@@ -141,7 +141,7 @@
         const title = document.createElement('span');
         const place = document.createElement('span');
 
-        link.href = `#${card.id}`;
+        link.href = `/cases/#${card.id}`;
         title.className = 'search-result-title';
         title.textContent = card.querySelector('h3')?.textContent.trim() || 'Case entry';
         place.className = 'search-result-place';
