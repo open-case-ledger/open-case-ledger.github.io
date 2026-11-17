@@ -48,7 +48,7 @@
   }
 
   if (ledgerGrid && !hasCase('June Ward')) {
-    ledgerGrid.insertAdjacentHTML('afterbegin', '<article class="case-card"><div class="case-topline"><span>00</span><span class="status waiting">Basic information released · remaining report withheld</span></div><p class="case-place">Fort Worth, Texas · 1977</p><h3>June Ward</h3><p class="case-focus">Fort Worth Police released basic information from report 77-A-14 showing a tighter early-morning chronology than the current cold-case synopsis. The first-response narrative records officers locating June Ward at approximately 3:04 a.m. beside the north curb of the 1000 block of West Fuller, while a vehicle supplement records her white 1973 Chevrolet two-door Laguna at approximately 2:55 a.m. Fort Worth withheld the remaining responsive report under Texas Government Code § 552.108(a)(1), relying on prior Attorney General ruling OR2025-010303, and closed request E006801-080626.</p><a href="cases/june-ward.html">Open the June Ward case page ↗</a><br><a href="https://police.fortworthtexas.gov/Crime-Public-Info/Cold-Cases-Landing/Cold-Cases" target="_blank" rel="noreferrer">Fort Worth Police official cold-case page ↗</a></article>');
+    ledgerGrid.insertAdjacentHTML('afterbegin', '<article class="case-card"><div class="case-topline"><span>00</span><span class="status waiting">Partial DNA history documented · modern retesting status unresolved</span></div><p class="case-place">Fort Worth, Texas · 1977</p><h3>June Ward</h3><p class="case-focus">Fort Worth Police still lists June Ward’s 1977 strangulation as unsolved. Open Case Ledger’s 2026 basic-information release from report 77-A-14 records her white 1973 Chevrolet Laguna at about 2:55 a.m. and officers locating her body at about 3:04 a.m. A December 2025 <em>Fort Worth Star-Telegram</em> report quotes June’s son Dave Ward saying a cold-case detective told him around 2011 that investigators had obtained a partial DNA sample and were sending it for testing; no match was found. Ward said he has not received a clear recent answer about whether enough DNA remains for newer advanced testing. Fort Worth Police has separately partnered with Othram to digitize cold-case files and evidence information, but public sources do not establish that June’s historical sample survives or is currently suitable for genealogy testing.</p><a href="cases/june-ward.html">Open the June Ward case page ↗</a><br><a href="https://police.fortworthtexas.gov/Crime-Public-Info/Cold-Cases-Landing/Cold-Cases" target="_blank" rel="noreferrer">Fort Worth Police official cold-case page ↗</a></article>');
   }
 
   const doswellCard = findCase('Doswell John Doe');
@@ -96,7 +96,7 @@
   }
 
   if (ledgerGrid) {
-    const recentOrder = ['Wanda Line', 'North Port John Doe', 'Newark Jane Doe', 'Carolyn J. Mills', 'William H. Sears', 'Dorchester Jane Doe', 'Nicoleta Hamlett', 'June Ward', 'Alfred Vernon Houle', 'Alachua County Baby Jane Doe', 'Refugio County Jane Doe', 'Walter A. Mosier'];
+    const recentOrder = ['June Ward', 'Wanda Line', 'North Port John Doe', 'Newark Jane Doe', 'Carolyn J. Mills', 'William H. Sears', 'Dorchester Jane Doe', 'Nicoleta Hamlett', 'Alfred Vernon Houle', 'Alachua County Baby Jane Doe', 'Refugio County Jane Doe', 'Walter A. Mosier'];
     const currentCards = Array.from(ledgerGrid.querySelectorAll('.case-card'));
     const preferred = recentOrder.map(findCase).filter(Boolean);
     const remaining = currentCards.filter((card) => !preferred.includes(card));
