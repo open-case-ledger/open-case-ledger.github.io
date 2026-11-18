@@ -101,7 +101,7 @@
     }
 
     const cards = () => Array.from(grid.querySelectorAll('.case-card'));
-    const recentOrder = ['June Ward', 'Wanda Line', 'North Port John Doe', 'Newark Jane Doe', 'Carolyn J. Mills', 'William H. Sears', 'Dorchester Jane Doe', 'Nicoleta Hamlett', 'Alfred Vernon Houle', 'Alachua County Baby Jane Doe', 'Refugio County Jane Doe', 'Walter A. Mosier'];
+    const recentOrder = ['North Port John Doe', 'June Ward', 'Wanda Line', 'Newark Jane Doe', 'Carolyn J. Mills', 'William H. Sears', 'Dorchester Jane Doe', 'Nicoleta Hamlett', 'Alfred Vernon Houle', 'Alachua County Baby Jane Doe', 'Refugio County Jane Doe', 'Walter A. Mosier'];
     const preferred = recentOrder.map((title) => cards().find((card) => card.querySelector('h3')?.textContent.trim() === title)).filter(Boolean);
     const remaining = cards().filter((card) => !preferred.includes(card));
     [...preferred, ...remaining].forEach((card) => grid.appendChild(card));
