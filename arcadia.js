@@ -96,7 +96,7 @@
   }
 
   if (ledgerGrid) {
-    const recentOrder = ['North Port John Doe', 'June Ward', 'Wanda Line', 'Newark Jane Doe', 'Carolyn J. Mills', 'William H. Sears', 'Dorchester Jane Doe', 'Nicoleta Hamlett', 'Alfred Vernon Houle', 'Alachua County Baby Jane Doe', 'Refugio County Jane Doe', 'Walter A. Mosier'];
+    const recentOrder = ['Carolyn J. Mills', 'North Port John Doe', 'June Ward', 'Wanda Line', 'Newark Jane Doe', 'William H. Sears', 'Dorchester Jane Doe', 'Nicoleta Hamlett', 'Alfred Vernon Houle', 'Alachua County Baby Jane Doe', 'Refugio County Jane Doe', 'Walter A. Mosier'];
     const currentCards = Array.from(ledgerGrid.querySelectorAll('.case-card'));
     const preferred = recentOrder.map(findCase).filter(Boolean);
     const remaining = currentCards.filter((card) => !preferred.includes(card));
